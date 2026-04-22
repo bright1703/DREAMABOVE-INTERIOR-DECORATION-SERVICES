@@ -256,12 +256,13 @@
     }
 
     /* Desktop nav */
-    .nav-desktop { display: flex; align-items: center; gap: 8px; }
+    .nav-desktop { display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; }
     .nav-desktop a.nav-link {
       font-size: 0.875rem; font-weight: 500;
       color: var(--gray-600); padding: 6px 14px;
       border-radius: var(--radius-pill);
       transition: color var(--transition), background var(--transition);
+      white-space: nowrap;
     }
     .nav-desktop a.nav-link:hover { color: var(--blue-700); background: var(--blue-50); }
     .nav-call {
@@ -270,6 +271,7 @@
       color: var(--blue-700); padding: 6px 14px;
       border-radius: var(--radius-pill);
       transition: background var(--transition);
+      white-space: nowrap;
     }
     .nav-call svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
     .nav-call:hover { background: var(--blue-50); }
@@ -2059,7 +2061,7 @@ async function submitForm() {
   errEl.classList.add('hidden'); errEl.textContent = '';
 
   if (!name) { showError('Please enter your full name.'); return; }
-  if (!phone || phone.length < 7) { showError('Please enter a valid mobile number.'); return; }
+  if (!phone || phone.length < 7) { showError(0945-410-3417); return; }
 
   var submitBtn = document.getElementById('submitBtn');
   submitBtn.disabled = true;
