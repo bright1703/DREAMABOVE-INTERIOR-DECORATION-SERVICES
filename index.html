@@ -1204,6 +1204,16 @@
       color: var(--white);
     }
 
+    /* ── Mobile: eliminate 300ms tap delay on all interactive controls ── */
+    .room-btn, .finish-btn, .method-btn,
+    .btn-next, .btn-back, .btn-submit,
+    input[type=range] {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
     /* Sliders */
     .slider-box {
       background: var(--gray-50);
@@ -3358,6 +3368,16 @@
       return '₱' + phpFmt.format(Math.round(n));
     }
 
+    /* ── Touch helpers: fire immediately on touchend, prevent delayed click ── */
+    function addTouchHandler(selector, handler) {
+      document.querySelectorAll(selector).forEach(function (el) {
+        el.addEventListener('touchend', function (e) {
+          e.preventDefault();   // stop the 300ms ghost click
+          handler(this);
+        }, { passive: false });
+      });
+    }
+
     function selectRoom(btn) {
       document.querySelectorAll('.room-btn').forEach(function (b) { b.classList.remove('active'); });
       btn.classList.add('active');
@@ -3443,6 +3463,21 @@
       });
       if (n === 2) updatePrice();
     }
+
+    /* ── Wire touch handlers once DOM is ready ── */
+    document.addEventListener('DOMContentLoaded', function () {
+      addTouchHandler('.room-btn',    selectRoom);
+      addTouchHandler('.finish-btn',  selectFinish);
+      addTouchHandler('.method-btn',  selectMethod);
+
+      /* btn-next / btn-back / btn-submit via touchend on the elements */
+      document.querySelectorAll('.btn-next, .btn-back, .btn-submit').forEach(function (el) {
+        el.addEventListener('touchend', function (e) {
+          e.preventDefault();
+          this.click();   /* trigger the existing onclick */
+        }, { passive: false });
+      });
+    });
 
     /* ═══════════════════════════════════════════════
        FORM SUBMISSION — Formspree live endpoint
@@ -3587,8 +3622,18 @@
     window.addEventListener('load', function () {
       if (typeof Fancybox !== 'undefined') {
         Fancybox.bind('[data-fancybox="gallery"]', {
-          Toolbar: { display: { left: [], middle: [], right: ['close'] } },
-          Carousel: { transition: 'fade' },
+          Toolbar: {
+            display: { left: [], middle: [], right: ['close'] },
+          },
+          /* No Carousel transition — prevents ghost-slide on close */
+          closeButton: 'outside',
+          dragToClose: true,
+          /* Close immediately on Escape or close button, no extra slides */
+          on: {
+            close: function (fancybox) {
+              fancybox.destroy();
+            },
+          },
         });
       }
     });
