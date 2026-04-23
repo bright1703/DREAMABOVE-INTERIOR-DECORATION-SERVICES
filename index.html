@@ -2908,6 +2908,10 @@
               <input class="form-input" id="f-phone" type="tel" placeholder="0945-410-3417" />
             </div>
             <div class="form-field">
+              <label class="form-label" for="f-email">Email Address *</label>
+              <input class="form-input" id="f-email" type="email" placeholder="e.g. maria@gmail.com" />
+            </div>
+            <div class="form-field">
               <label class="form-label" for="f-area">Your City / Area</label>
               <input class="form-input" id="f-area" type="text"
                 placeholder="e.g. Makati, BGC, Alabang, Cavite, Laguna…" />
@@ -3441,95 +3445,104 @@
     }
 
     /* ═══════════════════════════════════════════════
-       FORM SUBMISSION
+       FORM SUBMISSION — Formspree live endpoint
+       Receives at: inq@ceilings.ph
     ════════════════════════════════════════════════ */
     async function submitForm() {
-      var name = document.getElementById('f-name').value.trim();
+      var name  = document.getElementById('f-name').value.trim();
       var phone = document.getElementById('f-phone').value.trim();
-      var area = document.getElementById('f-area').value.trim();
+      var email = document.getElementById('f-email').value.trim();
+      var area  = document.getElementById('f-area').value.trim();
       var errEl = document.getElementById('formError');
 
-      errEl.classList.add('hidden'); errEl.textContent = '';
+      errEl.classList.add('hidden');
+      errEl.textContent = '';
 
-      if (!name) { showError('Please enter your full name.'); return; }
-      if (!phone || phone.length < 7) { showError(0945 - 410 - 3417); return; }
+      /* ── Validation: name ── */
+      if (!name) {
+        showError('Please enter your full name.');
+        return;
+      }
 
+      /* ── Validation: phone — must contain at least 10 digits ── */
+      var digitsOnly = phone.replace(/\D/g, '');
+      if (digitsOnly.length < 10) {
+        alert('Please check your phone number — it must contain at least 10 digits (e.g. 09451234567).');
+        return;
+      }
+
+      /* ── Validation: email — must contain "@" ── */
+      if (!email || email.indexOf('@') === -1) {
+        showError('Please enter a valid email address.');
+        return;
+      }
+
+      /* ── Loading state ── */
       var submitBtn = document.getElementById('submitBtn');
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<div class="spinner"></div> Sending...';
 
+      /* ── Build payload ── */
       var chargeableSpots = Math.max(0, estState.spots - PRICE.FREE_SPOTS);
       var totalEst = (estState.sqm * PRICE.BASE_RATE) + (chargeableSpots * PRICE.SPOT_PRICE);
+      var totalPrice = fmt(totalEst);
 
       var payload = {
-        name: name,
-        phone: phone,
-        area: area || 'Not specified',
-        room: estState.room,
-        finish: estState.finish,
-        sqm: estState.sqm,
-        spots: estState.spots,
-        estimate: fmt(totalEst),
-        contact: estState.contactMethod,
-        message: '🏠 New Inquiry — DREAMABOVE\n' +
-          '👤 ' + name + ' | 📱 ' + phone + '\n' +
-          '📍 ' + (area || 'N/A') + ' | 🛋️ ' + estState.room + '\n' +
-          '✨ ' + estState.finish + ' | 📐 ' + estState.sqm + ' m²\n' +
-          '💡 Spotlights: ' + estState.spots + ' (charged: ' + chargeableSpots + ')\n' +
-          '💰 Estimate: ' + fmt(totalEst) + ' | 💬 ' + estState.contactMethod,
+        name:             name,
+        phone:            phone,
+        email:            email,
+        area:             area || 'Not specified',
+        room:             estState.room,
+        finish:           estState.finish,
+        sqm:              estState.sqm,
+        spots:            estState.spots,
+        chargeable_spots: chargeableSpots,
+        total_estimate:   totalPrice,
+        contact_method:   estState.contactMethod,
+        _subject:         'New Ceiling Inquiry — DREAMABOVE | ' + name,
       };
 
-      // ─────────────────────────────────────────────────────────────────────
-      // OPTION A: Telegram Bot API
-      // 1. Create a bot via @BotFather and get your BOT_TOKEN.
-      // 2. Add the bot to a group/channel and get the CHAT_ID.
-      // 3. Replace the placeholders below and uncomment.
-      // ─────────────────────────────────────────────────────────────────────
-      /*
-      var BOT_TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN';
-      var CHAT_ID   = 'YOUR_CHAT_ID'; // e.g. '-1001234567890'
-      try {
-        var res = await fetch('https://api.telegram.org/bot' + BOT_TOKEN + '/sendMessage', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ chat_id: CHAT_ID, text: payload.message, parse_mode: 'Markdown' }),
-        });
-        if (!res.ok) throw new Error('Telegram error');
-        showSuccess();
-      } catch (e) {
-        showError('Could not send. Please call us directly!');
-        resetSubmitBtn();
-      }
-      */
+      /* ── WhatsApp message (instant notification + fallback) ── */
+      var waText = encodeURIComponent(
+        '🏠 New Inquiry — DREAMABOVE\n' +
+        '👤 ' + name + '\n' +
+        '📱 ' + phone + '\n' +
+        '✉️ ' + email + '\n' +
+        '📍 ' + (area || 'N/A') + '\n' +
+        '🛋️ ' + estState.room + ' | ✨ ' + estState.finish + '\n' +
+        '📐 ' + estState.sqm + ' m² | 💡 ' + estState.spots + ' spots\n' +
+        '💰 Estimate: ' + totalPrice + '\n' +
+        '💬 Prefers: ' + estState.contactMethod
+      );
+      var waURL = 'https://wa.me/639454103417?text=' + waText;
 
-      // ─────────────────────────────────────────────────────────────────────
-      // OPTION B: Formspree (https://formspree.io — free 50 submissions/mo)
-      // 1. Sign up at formspree.io, create a form, copy the form ID.
-      // 2. Replace YOUR_FORM_ID below and uncomment.
-      // ─────────────────────────────────────────────────────────────────────
-      /*
+      /* ── Try Formspree; open WhatsApp on success for instant ping ── */
       try {
-        var res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        var res = await fetch('https://formspree.io/f/mgorpepl', {
           method: 'POST',
-          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          headers: {
+            'Accept':       'application/json',
+            'Content-Type': 'application/json',
+          },
           body: JSON.stringify(payload),
         });
-        var data = await res.json();
-        if (res.ok) showSuccess();
-        else showError(data.errors ? data.errors.map(function(e){return e.message;}).join(', ') : 'Submission failed. Please call us directly.');
-      } catch (e) {
-        showError('Network error. Please call us directly!');
-        resetSubmitBtn();
-      }
-      */
 
-      // ─────────────────────────────────────────────────────────────────────
-      // DEMO fallback — remove once OPTION A or B is active
-      // ─────────────────────────────────────────────────────────────────────
-      await new Promise(function (r) { setTimeout(r, 1400); });
-      console.log('Form submitted (demo mode):', payload);
-      showSuccess();
-      // ─────────────────────────────────────────────────────────────────────
+        if (res.ok) {
+          window.open(waURL, '_blank');
+          showSuccess();
+        } else {
+          var data = await res.json();
+          var msg = (data.errors && data.errors.length)
+            ? data.errors.map(function (e) { return e.message; }).join(', ')
+            : 'Submission failed.';
+          showError(msg + ' — opening WhatsApp as backup…');
+          setTimeout(function () { window.open(waURL, '_blank'); showSuccess(); }, 1500);
+        }
+      } catch (e) {
+        /* Network blocked (e.g. preview iframe) — fall back silently to WhatsApp */
+        window.open(waURL, '_blank');
+        showSuccess();
+      }
     }
 
     function showError(msg) {
@@ -3554,6 +3567,7 @@
       document.getElementById('formWrap').classList.remove('hidden');
       document.getElementById('f-name').value = '';
       document.getElementById('f-phone').value = '';
+      document.getElementById('f-email').value = '';
       document.getElementById('f-area').value = '';
       estState.room = ''; estState.finish = ''; estState.sqm = 20; estState.spots = 0; estState.contactMethod = 'WhatsApp';
       document.querySelectorAll('.room-btn, .finish-btn').forEach(function (b) { b.classList.remove('active'); });
