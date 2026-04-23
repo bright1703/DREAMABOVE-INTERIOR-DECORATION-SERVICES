@@ -36,8 +36,6 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
 
-  <!-- Fancybox (gallery lightbox) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
 
   <style>
     /* ═══════════════════════════════════════════════════
@@ -2217,6 +2215,110 @@
       font-size: 0.95rem;
     }
 
+
+    /* ═══════════════════════════════════════════════════
+       CUSTOM LIGHTBOX — no dependencies, no 300ms bugs
+    ════════════════════════════════════════════════════ */
+    #lb-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, .93);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    #lb-overlay.lb-open {
+      display: flex;
+    }
+    #lb-img-wrap {
+      position: relative;
+      max-width: min(92vw, 1100px);
+      max-height: 88svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #lb-img {
+      max-width: 100%;
+      max-height: 85svh;
+      border-radius: 10px;
+      object-fit: contain;
+      display: block;
+      box-shadow: 0 24px 80px rgba(0,0,0,.7);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    #lb-caption {
+      position: absolute;
+      bottom: -32px;
+      left: 0; right: 0;
+      text-align: center;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,.65);
+      letter-spacing: .04em;
+    }
+    #lb-close {
+      position: fixed;
+      top: 16px; right: 16px;
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,.15);
+      border: 1.5px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      z-index: 10000;
+      transition: background .2s;
+    }
+    #lb-close:hover, #lb-close:active {
+      background: rgba(255,255,255,.28);
+    }
+    #lb-close svg {
+      width: 20px; height: 20px;
+      stroke: white; fill: none;
+      stroke-width: 2.5; stroke-linecap: round;
+      pointer-events: none;
+    }
+    #lb-prev, #lb-next {
+      position: fixed;
+      top: 50%; transform: translateY(-50%);
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,.12);
+      border: 1.5px solid rgba(255,255,255,.25);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      z-index: 10000;
+      transition: background .2s;
+    }
+    #lb-prev { left: 12px; }
+    #lb-next { right: 12px; }
+    #lb-prev:hover, #lb-next:hover,
+    #lb-prev:active, #lb-next:active {
+      background: rgba(255,255,255,.25);
+    }
+    #lb-prev svg, #lb-next svg {
+      width: 20px; height: 20px;
+      stroke: white; fill: none;
+      stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+      pointer-events: none;
+    }
+    #lb-counter {
+      position: fixed;
+      bottom: 16px; left: 50%; transform: translateX(-50%);
+      font-size: 0.78rem; color: rgba(255,255,255,.5);
+      letter-spacing: .08em;
+      pointer-events: none;
+    }
+    /* Fade animation */
+    #lb-img { transition: opacity .18s ease; }
+    #lb-img.lb-fade { opacity: 0; }
+
     /* Hidden utility */
     .hidden {
       display: none !important;
@@ -2644,7 +2746,7 @@
       </div>
       <div class="gallery-grid">
 
-        <a href="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=1400&q=90" data-fancybox="gallery"
+        <a href="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=1400&q=90" data-lightbox
           data-caption="Glossy White — Living Room, BGC Taguig" class="gallery-item">
           <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=640&q=75"
             alt="Glossy white stretch ceiling living room BGC" loading="lazy" />
@@ -2664,7 +2766,7 @@
           </div>
         </a>
 
-        <a href="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=1400&q=90" data-fancybox="gallery"
+        <a href="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=1400&q=90" data-lightbox
           data-caption="With design Finish — Master Bedroom, Alabang" class="gallery-item">
           <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=640&q=75"
             alt="With design finish bedroom ceiling Alabang" loading="lazy" />
@@ -2684,7 +2786,7 @@
           </div>
         </a>
 
-        <a href="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&q=90" data-fancybox="gallery"
+        <a href="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&q=90" data-lightbox
           data-caption="Matte Grey — Kitchen, Laguna" class="gallery-item">
           <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=640&q=75"
             alt="Matte kitchen stretch ceiling Laguna" loading="lazy" />
@@ -2704,7 +2806,7 @@
           </div>
         </a>
 
-        <a href="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1400&q=90" data-fancybox="gallery"
+        <a href="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1400&q=90" data-lightbox
           data-caption="Glossy with LED Strip — Bathroom, Makati" class="gallery-item">
           <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=640&q=75"
             alt="Bathroom ceiling with LED strips Makati" loading="lazy" />
@@ -2724,7 +2826,7 @@
           </div>
         </a>
 
-        <a href="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1400&q=90" data-fancybox="gallery"
+        <a href="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1400&q=90" data-lightbox
           data-caption="Designer Stretch Ceiling — Cavite" class="gallery-item">
           <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=640&q=75"
             alt="Designer stretch ceiling Cavite" loading="lazy" />
@@ -2744,7 +2846,7 @@
           </div>
         </a>
 
-        <a href="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1400&q=90" data-fancybox="gallery"
+        <a href="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1400&q=90" data-lightbox
           data-caption="Starry Sky Ceiling — Kids Room, Batangas" class="gallery-item">
           <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=640&q=75"
             alt="Starry sky ceiling kids room Batangas" loading="lazy" />
@@ -3295,7 +3397,6 @@
   <!-- ═══════════════════════════════════════════
      FANCYBOX
 ════════════════════════════════════════════════ -->
-  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js" defer></script>
 
   <script>
     /* ═══════════════════════════════════════════════
@@ -3629,27 +3730,135 @@
     }
 
     /* ═══════════════════════════════════════════════
-       FANCYBOX INIT (runs after deferred script loads)
+       CUSTOM LIGHTBOX
+       no 3rd-party deps, no 300ms ghost-click bugs
     ════════════════════════════════════════════════ */
-    window.addEventListener('load', function () {
-      if (typeof Fancybox !== 'undefined') {
-        Fancybox.bind('[data-fancybox="gallery"]', {
-          Toolbar: {
-            display: { left: [], middle: [], right: ['close'] },
-          },
-          /* No Carousel transition — prevents ghost-slide on close */
-          closeButton: 'outside',
-          dragToClose: true,
-          /* Close immediately on Escape or close button, no extra slides */
-          on: {
-            close: function (fancybox) {
-              fancybox.destroy();
-            },
-          },
+    (function () {
+      var overlay  = document.getElementById('lb-overlay');
+      var imgEl    = document.getElementById('lb-img');
+      var caption  = document.getElementById('lb-caption');
+      var counter  = document.getElementById('lb-counter');
+      var btnClose = document.getElementById('lb-close');
+      var btnPrev  = document.getElementById('lb-prev');
+      var btnNext  = document.getElementById('lb-next');
+
+      var items   = [];
+      var current = 0;
+      var isOpen  = false;
+
+      function buildItems() {
+        items = [];
+        document.querySelectorAll('[data-lightbox]').forEach(function (el) {
+          items.push({ src: el.getAttribute('href'), caption: el.getAttribute('data-caption') || '' });
         });
       }
-    });
+
+      function showImg(idx, instant) {
+        current = (idx + items.length) % items.length;
+        counter.textContent = (current + 1) + ' / ' + items.length;
+        caption.textContent = items[current].caption;
+        if (instant) {
+          imgEl.src = items[current].src;
+        } else {
+          imgEl.classList.add('lb-fade');
+          setTimeout(function () {
+            imgEl.src = items[current].src;
+            imgEl.onload = function () { imgEl.classList.remove('lb-fade'); };
+          }, 180);
+        }
+      }
+
+      function open(idx) {
+        if (isOpen) return;
+        buildItems();
+        isOpen = true;
+        overlay.classList.add('lb-open');
+        document.body.style.overflow = 'hidden';
+        showImg(idx, true);
+        btnClose.focus();
+      }
+
+      function close() {
+        if (!isOpen) return;
+        isOpen = false;
+        overlay.classList.remove('lb-open');
+        document.body.style.overflow = '';
+        imgEl.src = '';
+      }
+
+      function attachGallery() {
+        document.querySelectorAll('[data-lightbox]').forEach(function (el, idx) {
+          el.addEventListener('click', function (e) { e.preventDefault(); });
+          el.addEventListener('pointerdown', function (e) {
+            this._psx = e.clientX; this._psy = e.clientY;
+          });
+          el.addEventListener('pointerup', function (e) {
+            if (e.pointerType === 'touch' && !e.isPrimary) return;
+            var dx = Math.abs(e.clientX - (this._psx || e.clientX));
+            var dy = Math.abs(e.clientY - (this._psy || e.clientY));
+            if (dx > 10 || dy > 10) return;
+            e.preventDefault();
+            open(idx);
+          });
+        });
+      }
+
+      function bindBtn(el, fn) {
+        el.addEventListener('click', function (e) { e.stopPropagation(); fn(); });
+        el.addEventListener('touchend', function (e) {
+          e.preventDefault(); e.stopPropagation(); fn();
+        }, { passive: false });
+      }
+
+      bindBtn(btnClose, close);
+      bindBtn(btnPrev, function () { showImg(current - 1, false); });
+      bindBtn(btnNext, function () { showImg(current + 1, false); });
+
+      overlay.addEventListener('pointerup', function (e) {
+        if (e.target === overlay) close();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (!isOpen) return;
+        if (e.key === 'Escape' || e.key === 'Esc') close();
+        if (e.key === 'ArrowLeft')  showImg(current - 1, false);
+        if (e.key === 'ArrowRight') showImg(current + 1, false);
+      });
+
+      var swipeStartX = 0;
+      overlay.addEventListener('touchstart', function (e) {
+        swipeStartX = e.touches[0].clientX;
+      }, { passive: true });
+      overlay.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - swipeStartX;
+        if (Math.abs(dx) > 50) dx < 0 ? showImg(current + 1, false) : showImg(current - 1, false);
+      }, { passive: true });
+
+      document.addEventListener('DOMContentLoaded', attachGallery);
+    })();
+
   </script>
+  <!-- ═══════════════════════════════════════════
+     CUSTOM LIGHTBOX OVERLAY
+════════════════════════════════════════════════ -->
+  <div id="lb-overlay" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <div id="lb-img-wrap">
+      <img id="lb-img" src="" alt="" />
+      <div id="lb-caption"></div>
+    </div>
+    <button id="lb-close" aria-label="Close photo">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <button id="lb-prev" aria-label="Previous photo">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button id="lb-next" aria-label="Next photo">
+      <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div id="lb-counter"></div>
+  </div>
+
+
 </body>
 
 </html>
