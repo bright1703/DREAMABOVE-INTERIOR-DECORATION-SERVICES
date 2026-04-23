@@ -3368,12 +3368,19 @@
       return '₱' + phpFmt.format(Math.round(n));
     }
 
-    /* ── Touch helpers: fire immediately on touchend, prevent delayed click ── */
+    /* ── Touch helpers: instant response, works anywhere on the button ──
+       Uses elementFromPoint so tapping the right edge works correctly.   ── */
     function addTouchHandler(selector, handler) {
       document.querySelectorAll(selector).forEach(function (el) {
         el.addEventListener('touchend', function (e) {
-          e.preventDefault();   // stop the 300ms ghost click
-          handler(this);
+          e.preventDefault(); // kill the 300ms ghost click
+          var t = e.changedTouches[0];
+          var target = document.elementFromPoint(t.clientX, t.clientY);
+          /* walk up the DOM in case the touch landed on a child (span/emoji) */
+          while (target && !target.matches(selector)) {
+            target = target.parentElement;
+          }
+          if (target) handler(target);
         }, { passive: false });
       });
     }
@@ -3470,11 +3477,16 @@
       addTouchHandler('.finish-btn',  selectFinish);
       addTouchHandler('.method-btn',  selectMethod);
 
-      /* btn-next / btn-back / btn-submit via touchend on the elements */
+      /* btn-next / btn-back / btn-submit — fire click on the real element under finger */
       document.querySelectorAll('.btn-next, .btn-back, .btn-submit').forEach(function (el) {
         el.addEventListener('touchend', function (e) {
           e.preventDefault();
-          this.click();   /* trigger the existing onclick */
+          var t = e.changedTouches[0];
+          var target = document.elementFromPoint(t.clientX, t.clientY);
+          while (target && !target.matches('.btn-next, .btn-back, .btn-submit')) {
+            target = target.parentElement;
+          }
+          if (target) target.click();
         }, { passive: false });
       });
     });
