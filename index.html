@@ -1223,9 +1223,10 @@
 
     /* ── Mobile tap reliability ──────────────────────────────────────────
        1. touch-action:manipulation — removes 300ms delay, no JS needed.
-       2. pointer-events:none on children — iOS Safari hit-test bug fix:
-          child spans block the click from reaching the button on right side.
-       3. cursor:pointer — required for iOS to treat element as tappable.   ── */
+       2. pointer-events:none on children — iOS Safari hit-test bug fix.
+       3. cursor:pointer — required for iOS to treat element as tappable.
+       4. will-change:transform — keeps GPU layer alive so Safari never
+          caches a stale hit-test rect (critical for disabled→enabled btns). ── */
     .room-btn, .finish-btn, .method-btn,
     .btn-next, .btn-back, .btn-submit,
     .faq-btn, input[type=range] {
@@ -1233,6 +1234,15 @@
       -webkit-tap-highlight-color: transparent;
       -webkit-touch-callout: none;
       cursor: pointer;
+      /* Force own compositing layer — prevents Safari hit-test caching */
+      will-change: transform;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+    }
+    /* step1Next specifically — always on its own layer */
+    #step1Next {
+      will-change: transform;
+      isolation: isolate;
     }
     /* Children must not intercept pointer events */
     .room-btn  > *, .finish-btn > *, .method-btn > *,
@@ -1484,7 +1494,7 @@
       font-weight: 700;
       font-size: 0.9rem;
       cursor: pointer;
-      transition: background var(--transition);
+      transition: background var(--transition), opacity var(--transition);
       border: none;
     }
 
@@ -1492,7 +1502,12 @@
       background: var(--blue-800);
     }
 
-    .btn-next:disabled {
+    /* Visually disabled — NO pointer-events:none here.
+       Blocking clicks must happen in JS only (the guard in the click handler).
+       pointer-events:none on the button itself causes Android Chrome to pass
+       the tap to whatever is behind the button — so right-side taps land on
+       a non-interactive parent and nothing happens. */
+    .btn-next[data-disabled="1"] {
       opacity: .45;
       cursor: not-allowed;
     }
@@ -3035,8 +3050,7 @@
               <button type="button" class="finish-btn" data-finish="With design" >🌟 With Design</button>
             </div>
             <div class="step-nav">
-              <button type="button" class="btn-next" id="step1Next" disabled>Next: Estimate Size
-                →</button>
+              <button type="button" class="btn-next" id="step1Next" aria-disabled="true" data-disabled="1">Next: Estimate Size →</button>
             </div>
           </div>
 
@@ -3683,7 +3697,23 @@
     }
 
     function checkStep1() {
-      document.getElementById('step1Next').disabled = !(estState.room && estState.finish);
+      var btn = document.getElementById('step1Next');
+      var ready = !!(estState.room && estState.finish);
+
+      /* Use data-disabled instead of the HTML disabled attribute.
+         The disabled attribute causes iOS Safari to cache a stale hit-test
+         rectangle — the right half of the button stays unresponsive after
+         the button becomes enabled, until the user taps elsewhere first.
+         data-disabled avoids this entirely: the button is always in the DOM
+         as a normal interactive element; only its appearance and pointer-events
+         change via CSS. */
+      if (ready) {
+        btn.removeAttribute('data-disabled');
+        btn.setAttribute('aria-disabled', 'false');
+      } else {
+        btn.setAttribute('data-disabled', '1');
+        btn.setAttribute('aria-disabled', 'true');
+      }
     }
 
     function updateSlider(val) {
@@ -3785,7 +3815,10 @@
 
       /* Step navigation */
       var s1Next = document.getElementById('step1Next');
-      if (s1Next) s1Next.addEventListener('click', function () { goStep(2); });
+      if (s1Next) s1Next.addEventListener('click', function () {
+        /* Guard: only proceed if both room and finish are selected */
+        if (estState.room && estState.finish) goStep(2);
+      });
 
       document.querySelectorAll('.btn-back').forEach(function (btn) {
         var step = btn.closest('#step2') ? 1 : 2;
