@@ -101,6 +101,8 @@
     html {
       scroll-behavior: smooth;
       scroll-padding-top: var(--header-h);
+      /* Prevent any element from creating horizontal scroll */
+      overflow-x: hidden;
     }
 
     @media (max-width: 640px) {
@@ -119,6 +121,9 @@
       color: var(--gray-700);
       background: var(--white);
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      /* Ensure body never exceeds viewport width */
+      max-width: 100vw;
     }
 
     img {
@@ -232,7 +237,9 @@
       padding: 14px 28px;
       border-radius: var(--radius-pill);
       transition: all var(--transition);
-      white-space: nowrap;
+      /* white-space: nowrap removed — buttons wrap on mobile */
+      max-width: 100%;
+      box-sizing: border-box;
     }
 
     .btn-primary {
@@ -796,13 +803,16 @@
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      gap: 10px;
+      gap: 6px 10px;
       max-width: var(--container);
       margin-inline: auto;
       padding-inline: clamp(16px, 4vw, 40px);
       font-size: 0.83rem;
       font-weight: 500;
       color: var(--blue-700);
+      /* All text wraps within the screen */
+      word-break: break-word;
+      overflow-x: hidden;
     }
 
     .areas-inner svg {
@@ -1211,15 +1221,29 @@
       color: var(--white);
     }
 
-    /* ── Mobile: eliminate 300ms tap delay on all interactive controls ── */
+    /* ── Mobile tap reliability ──────────────────────────────────────────
+       1. touch-action:manipulation — removes 300ms delay, no JS needed.
+       2. pointer-events:none on children — iOS Safari hit-test bug fix:
+          child spans block the click from reaching the button on right side.
+       3. cursor:pointer — required for iOS to treat element as tappable.   ── */
     .room-btn, .finish-btn, .method-btn,
     .btn-next, .btn-back, .btn-submit,
-    input[type=range] {
+    .faq-btn, input[type=range] {
       touch-action: manipulation;
       -webkit-tap-highlight-color: transparent;
-      user-select: none;
-      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      cursor: pointer;
     }
+    /* Children must not intercept pointer events */
+    .room-btn  > *, .finish-btn > *, .method-btn > *,
+    .btn-next  > *, .btn-back  > *, .btn-submit > * {
+      pointer-events: none;
+    }
+    /* Minimum tap targets per WCAG (44×44px) */
+    .room-btn   { width: 100%; min-height: 80px; }
+    .finish-btn { min-height: 44px; }
+    .method-btn { min-height: 44px; width: 100%; }
+    .btn-next, .btn-back, .btn-submit { min-height: 48px; }
 
     /* Sliders */
     .slider-box {
@@ -2133,36 +2157,75 @@
        RESPONSIVE — MOBILE
     ════════════════════════════════════════════════════ */
     @media (max-width: 640px) {
-      .nav-desktop {
-        display: none;
-      }
+      /* ── Global overflow fix: nothing wider than the screen ── */
+      body { overflow-x: hidden; }
+      .hero { overflow-x: hidden; }
 
-      .hamburger {
-        display: flex;
-      }
+      .nav-desktop { display: none; }
+      .hamburger   { display: flex; }
 
-      .features-grid {
+      /* ── Hero: contain all content within screen width ── */
+      .hero {
         grid-template-columns: 1fr;
       }
+      .hero-content {
+        max-width: 100%;
+        /* Right padding so text doesn't slam against screen edge */
+        padding: clamp(24px, 5vw, 40px) clamp(16px, 5vw, 28px);
+        box-sizing: border-box;
+      }
+      /* Badge: allow wrapping, cap width */
+      .hero-badge {
+        white-space: normal;
+        max-width: 100%;
+        flex-wrap: wrap;
+      }
+      /* Title: slightly smaller so it wraps cleanly */
+      .hero-title {
+        font-size: clamp(1.9rem, 7.5vw, 3rem);
+        word-break: break-word;
+      }
+      /* Subtitle: full width, wraps naturally */
+      .hero-sub {
+        max-width: 100%;
+        font-size: 0.95rem;
+      }
+      /* Buttons: full width, text wraps, no overflow */
+      .hero-actions {
+        flex-direction: column;
+      }
+      .hero-actions .btn {
+        width: 100%;
+        white-space: normal;
+        text-align: center;
+        line-height: 1.35;
+        padding: 14px 18px;
+      }
+      /* Trust badges: wrap to multiple rows */
+      .hero-badges {
+        gap: 8px;
+      }
+      .trust-badge {
+        font-size: 0.72rem;
+        padding: 6px 10px;
+      }
+
+      /* ── Rest of page ── */
+      .features-grid { grid-template-columns: 1fr; }
 
       .gallery-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         gap: 10px;
       }
 
-      .reviews-grid {
-        grid-template-columns: 1fr;
-      }
+      .reviews-grid { grid-template-columns: 1fr; }
 
       .footer-grid {
         grid-template-columns: 1fr;
         gap: 36px;
       }
 
-      .stats-row {
-        flex-direction: column;
-        gap: 24px;
-      }
+      .stats-row { flex-direction: column; gap: 24px; }
 
       .stat-item:not(:last-child) {
         border-right: none;
@@ -2170,40 +2233,13 @@
         padding-bottom: 20px;
       }
 
-      .cta-actions {
-        flex-direction: column;
-        align-items: center;
-      }
+      .cta-actions { flex-direction: column; align-items: center; }
+      .cta-actions .btn { width: 100%; max-width: 340px; }
 
-      .cta-actions .btn {
-        width: 100%;
-        max-width: 340px;
-      }
+      .contact-method-group { grid-template-columns: repeat(2, 1fr); }
+      .room-grid { grid-template-columns: repeat(2, 1fr); }
 
-      .contact-method-group {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .room-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
-
-      .hero-actions .btn {
-        width: 100%;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .gallery-grid {
-        grid-template-columns: 1fr;
-      }
+      .footer-bottom { flex-direction: column; text-align: center; }
     }
 
     /* ═══════════════════════════════════════════════════
@@ -2980,26 +3016,26 @@
           <div id="step1">
             <h3 style="margin-bottom:20px;">Step 1: What type of room?</h3>
             <div class="room-grid">
-              <button type="button" class="room-btn" data-room="living" onclick="selectRoom(this)"><span
+              <button type="button" class="room-btn" data-room="living" ><span
                   class="room-emoji">🛋️</span>Living Room</button>
-              <button type="button" class="room-btn" data-room="bedroom" onclick="selectRoom(this)"><span
+              <button type="button" class="room-btn" data-room="bedroom" ><span
                   class="room-emoji">🛏️</span>Bedroom</button>
-              <button type="button" class="room-btn" data-room="bathroom" onclick="selectRoom(this)"><span
+              <button type="button" class="room-btn" data-room="bathroom" ><span
                   class="room-emoji">🚿</span>Bathroom</button>
-              <button type="button" class="room-btn" data-room="kitchen" onclick="selectRoom(this)"><span
+              <button type="button" class="room-btn" data-room="kitchen" ><span
                   class="room-emoji">🍳</span>Kitchen</button>
             </div>
             <p style="font-size:.85rem;font-weight:600;color:var(--gray-700);margin-bottom:12px;">Ceiling finish
               preference:</p>
             <div class="finish-group">
-              <button type="button" class="finish-btn" data-finish="glossy" onclick="selectFinish(this)">✨
+              <button type="button" class="finish-btn" data-finish="glossy" >✨
                 Glossy</button>
-              <button type="button" class="finish-btn" data-finish="matte" onclick="selectFinish(this)">🎨
+              <button type="button" class="finish-btn" data-finish="matte" >🎨
                 Matte</button>
-              <button type="button" class="finish-btn" data-finish="With design" onclick="selectFinish(this)">🌟 With Design</button>
+              <button type="button" class="finish-btn" data-finish="With design" >🌟 With Design</button>
             </div>
             <div class="step-nav">
-              <button type="button" class="btn-next" id="step1Next" onclick="goStep(2)" disabled>Next: Estimate Size
+              <button type="button" class="btn-next" id="step1Next" disabled>Next: Estimate Size
                 →</button>
             </div>
           </div>
@@ -3059,8 +3095,8 @@
             <p class="price-note">Final price confirmed after free on-site measurement. Installation fee included.</p>
 
             <div class="step-nav">
-              <button type="button" class="btn-back" onclick="goStep(1)">← Back</button>
-              <button type="button" class="btn-next" onclick="goStep(3)">Next: Your Details →</button>
+              <button type="button" class="btn-back" >← Back</button>
+              <button type="button" class="btn-next" >Next: Your Details →</button>
             </div>
           </div>
 
@@ -3088,19 +3124,19 @@
               <label class="form-label">Preferred Contact Method</label>
               <div class="contact-method-group">
                 <button type="button" class="method-btn active" data-method="WhatsApp"
-                  onclick="selectMethod(this)">WhatsApp</button>
-                <button type="button" class="method-btn" data-method="Viber" onclick="selectMethod(this)">Viber</button>
+                  >WhatsApp</button>
+                <button type="button" class="method-btn" data-method="Viber" >Viber</button>
                 <button type="button" class="method-btn" data-method="Messenger"
-                  onclick="selectMethod(this)">Messenger</button>
-                <button type="button" class="method-btn" data-method="Call" onclick="selectMethod(this)">Call</button>
+                  >Messenger</button>
+                <button type="button" class="method-btn" data-method="Call" >Call</button>
               </div>
             </div>
 
             <div id="formError" class="form-error hidden"></div>
 
             <div class="step-nav">
-              <button type="button" class="btn-back" onclick="goStep(2)">← Back</button>
-              <button type="button" class="btn-submit" id="submitBtn" onclick="submitForm()">
+              <button type="button" class="btn-back" >← Back</button>
+              <button type="button" class="btn-submit" id="submitBtn" >
                 <svg viewBox="0 0 24 24" width="17" height="17" stroke="white" fill="none" stroke-width="2"
                   stroke-linecap="round">
                   <line x1="22" y1="2" x2="11" y2="13" />
@@ -3630,15 +3666,7 @@
       return '₱' + phpFmt.format(Math.round(n));
     }
 
-    /* ── Touch handling via event delegation on the estimator card ──
-       Avoids elementFromPoint bugs and works reliably on all screen areas.  ── */
-    function closestMatch(el, selector) {
-      while (el) {
-        try { if (el.matches && el.matches(selector)) return el; } catch(e) {}
-        el = el.parentElement;
-      }
-      return null;
-    }
+
 
     function selectRoom(btn) {
       document.querySelectorAll('.room-btn').forEach(function (b) { b.classList.remove('active'); });
@@ -3734,42 +3762,42 @@
       if (!isOpen) item.classList.add('open');
     }
 
-        /* ── Single delegated pointerdown→pointerup on the estimator card ──
-       pointerdown records the start element; pointerup checks if the
-       finger stayed on the same logical button (tolerance 18px).
-       This is the most reliable approach across all iOS/Android browsers. ── */
+    /* ═══════════════════════════════════════════════
+       BIND ALL FORM BUTTON EVENTS via JS
+       (no onclick in HTML — avoids iOS Safari hit-test bug)
+    ════════════════════════════════════════════════ */
     document.addEventListener('DOMContentLoaded', function () {
-      var card = document.getElementById('estimatorCard');
-      if (!card) return;
 
-      var pdTarget = null;   // element where pointerdown happened
-      var pdX = 0, pdY = 0;  // coordinates of pointerdown
-
-      card.addEventListener('pointerdown', function (e) {
-        pdTarget = e.target;
-        pdX = e.clientX;
-        pdY = e.clientY;
-      }, { passive: true });
-
-      card.addEventListener('pointerup', function (e) {
-        /* ignore if finger moved more than 18px (scroll gesture) */
-        if (Math.abs(e.clientX - pdX) > 18 || Math.abs(e.clientY - pdY) > 18) return;
-
-        var btn;
-
-        btn = closestMatch(e.target, '.room-btn') || closestMatch(pdTarget, '.room-btn');
-        if (btn) { e.preventDefault(); selectRoom(btn); return; }
-
-        btn = closestMatch(e.target, '.finish-btn') || closestMatch(pdTarget, '.finish-btn');
-        if (btn) { e.preventDefault(); selectFinish(btn); return; }
-
-        btn = closestMatch(e.target, '.method-btn') || closestMatch(pdTarget, '.method-btn');
-        if (btn) { e.preventDefault(); selectMethod(btn); return; }
-
-        btn = closestMatch(e.target, '.btn-next, .btn-back, .btn-submit')
-           || closestMatch(pdTarget, '.btn-next, .btn-back, .btn-submit');
-        if (btn) { e.preventDefault(); btn.click(); return; }
+      /* Room buttons */
+      document.querySelectorAll('.room-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () { selectRoom(this); });
       });
+
+      /* Finish buttons */
+      document.querySelectorAll('.finish-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () { selectFinish(this); });
+      });
+
+      /* Contact method buttons */
+      document.querySelectorAll('.method-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () { selectMethod(this); });
+      });
+
+      /* Step navigation */
+      var s1Next = document.getElementById('step1Next');
+      if (s1Next) s1Next.addEventListener('click', function () { goStep(2); });
+
+      document.querySelectorAll('.btn-back').forEach(function (btn) {
+        var step = btn.closest('#step2') ? 1 : 2;
+        btn.addEventListener('click', function () { goStep(step); });
+      });
+
+      document.querySelectorAll('.btn-next:not(#step1Next)').forEach(function (btn) {
+        btn.addEventListener('click', function () { goStep(3); });
+      });
+
+      var submitBtn = document.getElementById('submitBtn');
+      if (submitBtn) submitBtn.addEventListener('click', function () { submitForm(); });
     });
 
     /* ═══════════════════════════════════════════════
