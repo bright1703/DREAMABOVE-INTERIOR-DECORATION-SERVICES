@@ -103,6 +103,15 @@
       scroll-padding-top: var(--header-h);
     }
 
+    @media (max-width: 640px) {
+      html {
+        scroll-padding-top: calc(var(--header-h) + 16px);
+      }
+      #estimator {
+        scroll-margin-top: calc(var(--header-h) + 16px);
+      }
+    }
+
     body {
       font-family: var(--font-body);
       font-size: 16px;
@@ -2884,7 +2893,7 @@
   <!-- ═══════════════════════════════════════════
      ESTIMATOR / QUIZ
 ════════════════════════════════════════════════ -->
-  <section class="estimator-section" id="estimator">
+  <section class="estimator-section" id="estimator" style="scroll-margin-top: calc(var(--header-h) + 12px);">
     <div class="container">
       <div class="estimator-header">
         <span class="section-eyebrow" style="color: var(--blue-200);">Instant Estimate</span>
@@ -3469,21 +3478,14 @@
       return '₱' + phpFmt.format(Math.round(n));
     }
 
-    /* ── Touch helpers: instant response, works anywhere on the button ──
-       Uses elementFromPoint so tapping the right edge works correctly.   ── */
-    function addTouchHandler(selector, handler) {
-      document.querySelectorAll(selector).forEach(function (el) {
-        el.addEventListener('touchend', function (e) {
-          e.preventDefault(); // kill the 300ms ghost click
-          var t = e.changedTouches[0];
-          var target = document.elementFromPoint(t.clientX, t.clientY);
-          /* walk up the DOM in case the touch landed on a child (span/emoji) */
-          while (target && !target.matches(selector)) {
-            target = target.parentElement;
-          }
-          if (target) handler(target);
-        }, { passive: false });
-      });
+    /* ── Touch handling via event delegation on the estimator card ──
+       Avoids elementFromPoint bugs and works reliably on all screen areas.  ── */
+    function closestMatch(el, selector) {
+      while (el) {
+        try { if (el.matches && el.matches(selector)) return el; } catch(e) {}
+        el = el.parentElement;
+      }
+      return null;
     }
 
     function selectRoom(btn) {
@@ -3572,23 +3574,41 @@
       if (n === 2) updatePrice();
     }
 
-    /* ── Wire touch handlers once DOM is ready ── */
+    /* ── Single delegated pointerdown→pointerup on the estimator card ──
+       pointerdown records the start element; pointerup checks if the
+       finger stayed on the same logical button (tolerance 18px).
+       This is the most reliable approach across all iOS/Android browsers. ── */
     document.addEventListener('DOMContentLoaded', function () {
-      addTouchHandler('.room-btn',    selectRoom);
-      addTouchHandler('.finish-btn',  selectFinish);
-      addTouchHandler('.method-btn',  selectMethod);
+      var card = document.getElementById('estimatorCard');
+      if (!card) return;
 
-      /* btn-next / btn-back / btn-submit — fire click on the real element under finger */
-      document.querySelectorAll('.btn-next, .btn-back, .btn-submit').forEach(function (el) {
-        el.addEventListener('touchend', function (e) {
-          e.preventDefault();
-          var t = e.changedTouches[0];
-          var target = document.elementFromPoint(t.clientX, t.clientY);
-          while (target && !target.matches('.btn-next, .btn-back, .btn-submit')) {
-            target = target.parentElement;
-          }
-          if (target) target.click();
-        }, { passive: false });
+      var pdTarget = null;   // element where pointerdown happened
+      var pdX = 0, pdY = 0;  // coordinates of pointerdown
+
+      card.addEventListener('pointerdown', function (e) {
+        pdTarget = e.target;
+        pdX = e.clientX;
+        pdY = e.clientY;
+      }, { passive: true });
+
+      card.addEventListener('pointerup', function (e) {
+        /* ignore if finger moved more than 18px (scroll gesture) */
+        if (Math.abs(e.clientX - pdX) > 18 || Math.abs(e.clientY - pdY) > 18) return;
+
+        var btn;
+
+        btn = closestMatch(e.target, '.room-btn') || closestMatch(pdTarget, '.room-btn');
+        if (btn) { e.preventDefault(); selectRoom(btn); return; }
+
+        btn = closestMatch(e.target, '.finish-btn') || closestMatch(pdTarget, '.finish-btn');
+        if (btn) { e.preventDefault(); selectFinish(btn); return; }
+
+        btn = closestMatch(e.target, '.method-btn') || closestMatch(pdTarget, '.method-btn');
+        if (btn) { e.preventDefault(); selectMethod(btn); return; }
+
+        btn = closestMatch(e.target, '.btn-next, .btn-back, .btn-submit')
+           || closestMatch(pdTarget, '.btn-next, .btn-back, .btn-submit');
+        if (btn) { e.preventDefault(); btn.click(); return; }
       });
     });
 
