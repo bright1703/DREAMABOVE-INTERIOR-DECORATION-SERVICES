@@ -101,8 +101,6 @@
     html {
       scroll-behavior: smooth;
       scroll-padding-top: var(--header-h);
-      /* Prevent any element from creating horizontal scroll */
-      overflow-x: hidden;
     }
 
     @media (max-width: 640px) {
@@ -121,9 +119,6 @@
       color: var(--gray-700);
       background: var(--white);
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-      /* Ensure body never exceeds viewport width */
-      max-width: 100vw;
     }
 
     img {
@@ -558,9 +553,8 @@
       gap: 48px;
       background: linear-gradient(140deg, var(--blue-950) 0%, var(--blue-800) 55%, var(--blue-600) 100%);
       position: relative;
-      /* overflow:clip clips visually like hidden but does NOT create a new
-         scroll container — Android Chrome won't cut off hit-test areas */
-      overflow: clip;
+      /* No overflow clipping — any overflow:hidden/clip on a ancestor
+         causes Android Chrome to cut off hit-test areas on child buttons */
     }
 
     .hero::before {
@@ -797,7 +791,6 @@
       background: var(--blue-50);
       border-bottom: 1px solid var(--blue-100);
       padding: 12px 0;
-      overflow: hidden;
     }
 
     .areas-inner {
@@ -1066,7 +1059,7 @@
       background: linear-gradient(140deg, var(--blue-950) 0%, var(--blue-800) 100%);
       padding-block: var(--section-pad);
       position: relative;
-      overflow: hidden;
+      /* overflow hidden removed — kills button hit-test on Android Chrome */
     }
 
     .estimator-section::before {
@@ -2174,8 +2167,7 @@
        RESPONSIVE — MOBILE
     ════════════════════════════════════════════════════ */
     @media (max-width: 640px) {
-      /* ── Global overflow fix: nothing wider than the screen ── */
-      body { overflow-x: hidden; }
+      /* ── Mobile layout ── */
 
       .nav-desktop { display: none; }
       .hamburger   { display: flex; }
