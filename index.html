@@ -3808,9 +3808,20 @@
        so the form card appears in the middle, not buried at bottom.    ── */
     function goToEstimator(e) {
       if (e) e.preventDefault();
-      var el = document.getElementById('estimator');
-      if (!el) return;
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      /* Scroll to the white card inside the estimator, not the whole section.
+         Then nudge up by headerHeight so the card sits just below the nav bar. */
+      var card = document.getElementById('estimatorCard');
+      var section = document.getElementById('estimator');
+      var target = card || section;
+      if (!target) return;
+
+      var headerH = parseInt(getComputedStyle(document.documentElement)
+                      .getPropertyValue('--header-h')) || 68;
+      var targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+      /* 16px breathing room below the header */
+      var scrollTo = targetTop - headerH - 16;
+
+      window.scrollTo({ top: scrollTo, behavior: 'smooth' });
     }
 
     /* ═══════════════════════════════════════════════
