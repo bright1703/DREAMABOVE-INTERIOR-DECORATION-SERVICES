@@ -361,39 +361,51 @@
     }
 
     .logo-mark {
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       background: var(--blue-700);
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(21,88,192,.35);
     }
 
     .logo-mark svg {
-      width: 18px;
-      height: 18px;
-      stroke: white;
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+      width: 22px;
+      height: 22px;
     }
 
-    .logo-text {
+    /* Inline SVG logo wordmark */
+    .logo-wordmark {
+      display: flex;
+      flex-direction: column;
       line-height: 1;
+      gap: 2px;
     }
 
-    .logo-name {
+    .logo-wordmark-text {
       font-family: var(--font-display);
-      font-size: 1.05rem;
-      font-weight: 600;
+      font-size: 1.15rem;
+      line-height: 1;
+      display: flex;
+      align-items: baseline;
+      gap: 0;
+    }
+
+    .logo-wordmark-dream {
+      font-weight: 400;
       color: var(--blue-900);
-      display: block;
+    }
+
+    .logo-wordmark-above {
+      font-weight: 700;
+      color: var(--blue-700);
     }
 
     .logo-sub {
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       font-weight: 700;
       letter-spacing: .15em;
       text-transform: uppercase;
@@ -2304,6 +2316,110 @@
     }
     .faq-item.open .faq-body { display: block; }
 
+
+    /* ═══════════════════════════════════════════════════
+       VIDEO SECTION — Watch It Happen
+    ════════════════════════════════════════════════════ */
+    .video-section {
+      background: var(--blue-950);
+      padding-block: var(--section-pad);
+      position: relative;
+    }
+    .video-section .section-eyebrow { color: var(--blue-300); }
+    .video-section h2 { color: var(--white); }
+    .video-section .section-header p { color: var(--blue-200); }
+
+    .video-card {
+      max-width: 480px;
+      margin-inline: auto;
+      position: relative;
+    }
+
+    .video-thumb-wrap {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      aspect-ratio: 9/16;
+      background: var(--blue-900);
+      box-shadow: 0 24px 60px rgba(0,0,0,.5);
+      cursor: pointer;
+      display: block;
+      text-decoration: none;
+    }
+
+    .video-thumb-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .4s ease;
+    }
+    .video-thumb-wrap:hover img { transform: scale(1.04); }
+
+    /* Play button overlay */
+    .video-play-btn {
+      position: absolute;
+      inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 16px;
+      background: linear-gradient(to top, rgba(11,31,74,.7) 0%, rgba(11,31,74,.2) 60%, transparent 100%);
+      transition: background var(--transition);
+    }
+    .video-thumb-wrap:hover .video-play-btn {
+      background: linear-gradient(to top, rgba(11,31,74,.8) 0%, rgba(11,31,74,.35) 60%, transparent 100%);
+    }
+
+    .play-circle {
+      width: 80px; height: 80px;
+      background: rgba(255,255,255,.95);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,.4);
+      transition: transform .25s ease, background var(--transition);
+      flex-shrink: 0;
+    }
+    .video-thumb-wrap:hover .play-circle {
+      transform: scale(1.1);
+      background: white;
+    }
+    .play-circle svg {
+      width: 30px; height: 30px;
+      fill: var(--blue-800);
+      margin-left: 4px; /* optical centre for triangle */
+    }
+
+    .video-caption {
+      text-align: center;
+      color: white;
+      padding: 0 20px;
+    }
+    .video-caption strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .video-caption span {
+      font-size: 0.85rem;
+      color: var(--blue-200);
+    }
+
+    .video-label {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #ff0000;
+      color: white;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 20px;
+    }
+    .video-label svg { width: 13px; height: 13px; fill: white; }
+
+    .video-cta-row {
+      display: flex; gap: 12px; justify-content: center;
+      margin-top: 28px; flex-wrap: wrap;
+    }
     /* ═══════════════════════════════════════════════════
        CUSTOM LIGHTBOX — no dependencies, no 300ms bugs
     ════════════════════════════════════════════════════ */
@@ -2425,14 +2541,16 @@
 
         <a href="#" class="logo" aria-label="DREAMABOVE Home">
           <div class="logo-mark">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <polyline points="2 17 12 22 22 17" />
-              <polyline points="2 12 12 17 22 12" />
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 17 Q12 3 21 17" stroke="white" stroke-width="2.4" stroke-linecap="round"/>
+              <line x1="2" y1="17" x2="22" y2="17" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="12" cy="7" r="2.2" fill="#f59e0b"/>
             </svg>
           </div>
-          <div class="logo-text">
-            <span class="logo-name">DREAMABOVE</span>
+          <div class="logo-wordmark">
+            <div class="logo-wordmark-text">
+              <span class="logo-wordmark-dream">Dream</span><span class="logo-wordmark-above">Above</span>
+            </div>
             <span class="logo-sub">Metro Manila & CALABARZON</span>
           </div>
         </a>
@@ -2440,6 +2558,7 @@
         <nav class="nav-desktop" aria-label="Primary navigation">
           <a href="#why-us" class="nav-link">Why Us</a>
           <a href="#gallery" class="nav-link">Gallery</a>
+          <a href="#video" class="nav-link">Video</a>
           <a href="#" onclick="goToEstimator(event)" class="nav-link">Get Quote</a>
           <a href="#reviews" class="nav-link">Reviews</a>
           <a href="#faq" class="nav-link">FAQ</a>
@@ -2475,6 +2594,12 @@
           <polyline points="21 15 16 10 5 21" />
         </svg>
         Gallery
+      </a>
+      <a href="#video" data-nav-close>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--blue-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+        </svg>
+        Video
       </a>
       <a href="#" onclick="goToEstimator(event)" data-nav-close>
         <svg viewBox="0 0 24 24" width="18" height="18" stroke="var(--blue-600)" fill="none" stroke-width="2"
@@ -2614,8 +2739,8 @@
     <!-- Desktop hero image -->
     <div class="hero-visual fade-up delay-2">
       <div class="hero-img-wrap">
-        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=700&fm=webp&q=80&fit=crop"
-          alt="Modern luxury living room with elegant stretch ceiling" loading="eager" />
+        <img src="images/gallery/stretch-ceiling-glossy-dark-grey-hallway-bgc-taguig.jpg"
+          alt="Premium glossy stretch ceiling installation BGC Taguig DreamAbove" loading="eager" />
         <div class="hero-img-overlay"></div>
       </div>
       <div class="hero-stat-card">
@@ -2852,135 +2977,91 @@
       <div class="section-header">
         <span class="section-eyebrow">Portfolio</span>
         <h2>Our Recent Work Across Greater Manila</h2>
-        <p>Click any photo to see the full-size image. Every project is completed in-house by our own certified team.
-        </p>
+        <p>Real projects by our team — click any photo to view full size. Serving Metro Manila, Cavite, Laguna, Batangas, Rizal and beyond.</p>
       </div>
       <div class="gallery-grid">
 
-        <a href="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=1400&q=90" data-lightbox
-          data-caption="Glossy White — Living Room, BGC Taguig" class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=640&fm=webp&q=75"
-            alt="Glossy white stretch ceiling living room BGC" loading="lazy" />
-          <div class="gallery-overlay">
-            <div class="gallery-caption">
-              <svg viewBox="0 0 24 24">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              Living Room · BGC, Taguig
-            </div>
-          </div>
-          <div class="gallery-zoom-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-            </svg>
-          </div>
+        <a href="images/gallery/stretch-ceiling-glossy-white-living-room-alabang.jpg" data-lightbox
+          data-caption="Glossy White — Living Room, Alabang" class="gallery-item">
+          <img src="images/gallery/stretch-ceiling-glossy-white-living-room-alabang.jpg"
+            alt="Glossy white stretch ceiling living room Alabang" loading="lazy" />
+          <div class="gallery-overlay"><div class="gallery-caption">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Glossy White · Living Room · Alabang
+          </div></div>
+          <div class="gallery-zoom-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
         </a>
 
-        <a href="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=1400&q=90" data-lightbox
-          data-caption="With design Finish — Master Bedroom, Alabang" class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=640&fm=webp&q=75"
-            alt="With design finish bedroom ceiling Alabang" loading="lazy" />
-          <div class="gallery-overlay">
-            <div class="gallery-caption">
-              <svg viewBox="0 0 24 24">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              Bedroom · Alabang
-            </div>
-          </div>
-          <div class="gallery-zoom-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-            </svg>
-          </div>
+        <a href="images/gallery/stretch-ceiling-glossy-dark-grey-hallway-bgc-taguig.jpg" data-lightbox
+          data-caption="Glossy Dark Grey — Hallway with Spotlights, BGC Taguig" class="gallery-item">
+          <img src="images/gallery/stretch-ceiling-glossy-dark-grey-hallway-bgc-taguig.jpg"
+            alt="Glossy dark grey stretch ceiling hallway BGC Taguig" loading="lazy" />
+          <div class="gallery-overlay"><div class="gallery-caption">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Glossy Dark Grey · Hallway · BGC
+          </div></div>
+          <div class="gallery-zoom-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
         </a>
 
-        <a href="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&q=90" data-lightbox
-          data-caption="Matte Grey — Kitchen, Laguna" class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=640&fm=webp&q=75"
-            alt="Matte kitchen stretch ceiling Laguna" loading="lazy" />
-          <div class="gallery-overlay">
-            <div class="gallery-caption">
-              <svg viewBox="0 0 24 24">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              Kitchen · Laguna
-            </div>
-          </div>
-          <div class="gallery-zoom-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-            </svg>
-          </div>
+        <a href="images/gallery/stretch-ceiling-matte-hallway-spotlights-laguna.jpg" data-lightbox
+          data-caption="Matte White — Hallway with LED Spotlights, Laguna" class="gallery-item">
+          <img src="images/gallery/stretch-ceiling-matte-hallway-spotlights-laguna.jpg"
+            alt="Matte white stretch ceiling hallway spotlights Laguna" loading="lazy" />
+          <div class="gallery-overlay"><div class="gallery-caption">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Matte White · Hallway · Laguna
+          </div></div>
+          <div class="gallery-zoom-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
         </a>
 
-        <a href="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1400&q=90" data-lightbox
-          data-caption="Glossy with LED Strip — Bathroom, Makati" class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=640&fm=webp&q=75"
-            alt="Bathroom ceiling with LED strips Makati" loading="lazy" />
-          <div class="gallery-overlay">
-            <div class="gallery-caption">
-              <svg viewBox="0 0 24 24">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              Bathroom · Makati
-            </div>
-          </div>
-          <div class="gallery-zoom-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-            </svg>
-          </div>
+        <a href="images/gallery/stretch-ceiling-glossy-bathroom-led-spotlights-makati.jpg" data-lightbox
+          data-caption="Glossy White — Bathroom with 6 LED Spotlights, Makati" class="gallery-item">
+          <img src="images/gallery/stretch-ceiling-glossy-bathroom-led-spotlights-makati.jpg"
+            alt="Glossy stretch ceiling bathroom LED spotlights Makati" loading="lazy" />
+          <div class="gallery-overlay"><div class="gallery-caption">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Glossy White · Bathroom · Makati
+          </div></div>
+          <div class="gallery-zoom-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
         </a>
 
-        <a href="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1400&q=90" data-lightbox
-          data-caption="Designer Stretch Ceiling — Cavite" class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=640&fm=webp&q=75"
-            alt="Designer stretch ceiling Cavite" loading="lazy" />
-          <div class="gallery-overlay">
-            <div class="gallery-caption">
-              <svg viewBox="0 0 24 24">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              Living Room · Cavite
-            </div>
-          </div>
-          <div class="gallery-zoom-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-            </svg>
-          </div>
+        <a href="images/gallery/stretch-ceiling-matte-white-walk-in-closet-cavite.jpg" data-lightbox
+          data-caption="Matte White — Walk-in Closet with Track Lights, Cavite" class="gallery-item">
+          <img src="images/gallery/stretch-ceiling-matte-white-walk-in-closet-cavite.jpg"
+            alt="Matte white stretch ceiling walk-in closet track lights Cavite" loading="lazy" />
+          <div class="gallery-overlay"><div class="gallery-caption">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Matte White · Walk-in Closet · Cavite
+          </div></div>
+          <div class="gallery-zoom-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
         </a>
 
-        <a href="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1400&q=90" data-lightbox
-          data-caption="Starry Sky Ceiling — Kids Room, Batangas" class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=640&fm=webp&q=75"
-            alt="Starry sky ceiling kids room Batangas" loading="lazy" />
-          <div class="gallery-overlay">
-            <div class="gallery-caption">
-              <svg viewBox="0 0 24 24">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              Kids Room · Batangas
-            </div>
-          </div>
-          <div class="gallery-zoom-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-            </svg>
-          </div>
+        <a href="images/gallery/stretch-ceiling-multilevel-dome-entrance-hall-metro-manila.jpg" data-lightbox
+          data-caption="Multi-level Dome — Entrance Hall, Metro Manila" class="gallery-item">
+          <img src="images/gallery/stretch-ceiling-multilevel-dome-entrance-hall-metro-manila.jpg"
+            alt="Multi-level dome stretch ceiling entrance hall Metro Manila" loading="lazy" />
+          <div class="gallery-overlay"><div class="gallery-caption">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Multi-level Dome · Entrance · Metro Manila
+          </div></div>
+          <div class="gallery-zoom-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+        </a>
+
+        <a href="images/gallery/stretch-ceiling-matte-white-staircase-cavite.jpg" data-lightbox
+          data-caption="Matte White — Staircase Area, Cavite" class="gallery-item">
+          <img src="images/gallery/stretch-ceiling-matte-white-staircase-cavite.jpg"
+            alt="Matte white stretch ceiling staircase area Cavite" loading="lazy" />
+          <div class="gallery-overlay"><div class="gallery-caption">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Matte White · Staircase · Cavite
+          </div></div>
+          <div class="gallery-zoom-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
         </a>
 
       </div>
       <div class="gallery-more">
         <a href="https://www.facebook.com/ModernCeilingsPH/" target="_blank" rel="noopener">
-          See more photos on our Facebook page
+          See more projects on our Facebook page
           <svg viewBox="0 0 24 24">
             <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
             <polyline points="15 3 21 3 21 9" />
@@ -3315,6 +3396,65 @@
 
 
 
+
+  <!-- ═══════════════════════════════════════════
+     VIDEO SECTION — Watch It Happen
+════════════════════════════════════════════════ -->
+  <section class="section video-section" id="video">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">See The Result</span>
+        <h2>Watch It Happen: Before & After</h2>
+        <p style="color:var(--blue-200);">Real installation. Real home. See the transformation in under 60 seconds.</p>
+      </div>
+
+      <div class="video-card">
+        <div style="text-align:center;margin-bottom:16px;">
+          <span class="video-label">
+            <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.4 19.54C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 001.94-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white" style="fill:#fff"/></svg>
+            YouTube Shorts
+          </span>
+        </div>
+
+        <a href="https://youtube.com/shorts/XY-RS4tpCy4?feature=share"
+           target="_blank" rel="noopener"
+           class="video-thumb-wrap"
+           aria-label="Watch Before & After installation video on YouTube">
+          <!-- Thumbnail — YouTube shorts preview image -->
+          <img
+            src="https://img.youtube.com/vi/XY-RS4tpCy4/maxresdefault.jpg"
+            onerror="this.src='https://img.youtube.com/vi/XY-RS4tpCy4/hqdefault.jpg'"
+            alt="DreamAbove stretch ceiling before and after transformation"
+            loading="lazy" />
+          <div class="video-play-btn">
+            <div class="play-circle">
+              <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+            <div class="video-caption">
+              <strong>Before & After</strong>
+              <span>Tap to watch on YouTube →</span>
+            </div>
+          </div>
+        </a>
+
+        <div class="video-cta-row">
+          <a href="https://youtube.com/shorts/XY-RS4tpCy4?feature=share"
+             target="_blank" rel="noopener"
+             class="btn btn-primary" style="gap:8px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.4 19.54C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 001.94-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="white"/></svg>
+            Watch on YouTube
+          </a>
+          <a href="https://wa.me/639454103417?text=Hi!%20I%20watched%20your%20video%20and%20I%27m%20interested%20in%20a%20free%20ceiling%20survey."
+             target="_blank" rel="noopener"
+             class="btn btn-ghost-white" style="gap:8px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+            I Want This Too!
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══════════════════════════════════════════
      FAQ SECTION
 ════════════════════════════════════════════════ -->
@@ -3453,8 +3593,12 @@
                 <polyline points="2 17 12 22 22 17" />
                 <polyline points="2 12 12 17 22 12" />
               </svg></div>
-            <div><span class="footer-logo-name">DREAMABOVE</span><span class="footer-logo-sub"
-                style="display:block;">Metro Manila & CALABARZON</span></div>
+            <div>
+              <div style="display:flex;align-items:baseline;line-height:1;margin-bottom:3px;">
+                <span style="font-family:var(--font-display);font-size:1.1rem;font-weight:400;color:white;">Dream</span><span style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--blue-300);">Above</span>
+              </div>
+              <span class="footer-logo-sub">Metro Manila & CALABARZON</span>
+            </div>
           </div>
           <p class="footer-desc">Professional stretch ceiling installation serving Metro Manila, Cavite, Laguna,
             Batangas, Rizal, and Quezon. Projects in other regions available on request.</p>
