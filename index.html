@@ -6,8 +6,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DREAMABOVE – Premium Stretch Ceilings in Metro Manila & CALABARZON</title>
   <meta name="description"
-    content="Professional stretch ceiling installation across Metro Manila & CALABARZON (Cavite, Laguna, Batangas, Rizal, Quezon). 1-day install, 10-year warranty, dust-free. Serving BGC, Makati, Alabang & beyond. Book your free survey today!" />
+    content="Premium European-engineered PVC stretch ceilings for homes, condos and interiors across Metro Manila & CALABARZON. Moisture-resistant, mold-resistant, custom matte, glossy, printed and light ceilings. Request a free site survey." />
   <meta name="theme-color" content="#1558c0" />
+
+  <!-- LocalBusiness structured data — only verified fields (name, phone, service area,
+       coordinates from the business's own Google Maps listing). No street address is
+       included since it is not published on the Google Business Profile listing, and
+       no rating/review data is included since none is independently verified. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    "name": "DREAMABOVE INTERIOR - Stretch Ceilings Philippines",
+    "url": "https://ceilings.ph",
+    "telephone": "+639454103417",
+    "email": "hello@ceilings.ph",
+    "image": "https://ceilings.ph/stretch-ceiling-glossy-white-living-room-alabang.jpg",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 14.4051447,
+      "longitude": 120.9402314
+    },
+    "hasMap": "https://maps.app.goo.gl/x65NmfFqk99hrfxq5",
+    "areaServed": [
+      "Metro Manila", "Cavite", "Laguna", "Batangas", "Rizal", "Quezon Province"
+    ],
+    "sameAs": [
+      "https://www.instagram.com/dreamabove.ph/"
+    ]
+  }
+  </script>
 
   <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
@@ -922,7 +950,7 @@
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
 
@@ -1652,123 +1680,6 @@
     }
 
     /* ═══════════════════════════════════════════════════
-       TESTIMONIALS
-    ════════════════════════════════════════════════════ */
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .review-card {
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      box-shadow: var(--shadow-sm);
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-
-    .review-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .review-card.featured {
-      background: linear-gradient(135deg, var(--blue-800), var(--blue-600));
-      border-color: transparent;
-      box-shadow: var(--shadow-lg);
-    }
-
-    .stars {
-      display: flex;
-      gap: 3px;
-      margin-bottom: 16px;
-    }
-
-    .stars svg {
-      width: 16px;
-      height: 16px;
-      stroke: var(--amber);
-      fill: var(--amber);
-      stroke-width: 1;
-    }
-
-    .review-text {
-      font-size: 0.9rem;
-      line-height: 1.7;
-      color: var(--gray-600);
-      margin-bottom: 20px;
-    }
-
-    .review-card.featured .review-text {
-      color: rgba(255, 255, 255, .85);
-    }
-
-    .reviewer {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .reviewer img {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    .reviewer-name {
-      font-weight: 700;
-      font-size: 0.875rem;
-      color: var(--gray-800);
-    }
-
-    .review-card.featured .reviewer-name {
-      color: var(--white);
-    }
-
-    .reviewer-loc {
-      font-size: 0.75rem;
-      color: var(--gray-500);
-    }
-
-    .review-card.featured .reviewer-loc {
-      color: var(--blue-200);
-    }
-
-    /* Stats row */
-    .stats-row {
-      display: flex;
-      justify-content: center;
-      gap: 0;
-      max-width: 480px;
-      margin: 52px auto 0;
-    }
-
-    .stat-item {
-      flex: 1;
-      text-align: center;
-    }
-
-    .stat-item:not(:last-child) {
-      border-right: 1px solid var(--gray-200);
-    }
-
-    .stat-big {
-      font-family: var(--font-display);
-      font-size: 2.4rem;
-      color: var(--blue-700);
-      line-height: 1;
-    }
-
-    .stat-sub {
-      font-size: 0.75rem;
-      color: var(--gray-500);
-      margin-top: 4px;
-    }
-
-    /* ═══════════════════════════════════════════════════
        FINAL CTA
     ════════════════════════════════════════════════════ */
     .final-cta {
@@ -2160,10 +2071,6 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .reviews-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
       .footer-grid {
         grid-template-columns: 1fr 1fr;
       }
@@ -2245,14 +2152,10 @@
         gap: 10px;
       }
 
-      .reviews-grid { grid-template-columns: 1fr; }
-
       .footer-grid {
         grid-template-columns: 1fr;
         gap: 36px;
       }
-
-      .stats-row { flex-direction: column; gap: 24px; }
 
       .stat-item:not(:last-child) {
         border-right: none;
@@ -2567,7 +2470,7 @@
           <a href="#gallery" class="nav-link">Gallery</a>
           <a href="#video" class="nav-link">Video</a>
           <a href="#" onclick="goToEstimator(event)" class="nav-link">Get Quote</a>
-          <a href="#reviews" class="nav-link">Reviews</a>
+          <a href="#possibilities" class="nav-link">Designs</a>
           <a href="#faq" class="nav-link">FAQ</a>
           <a href="tel:+639454103417" class="nav-call">
             <svg viewBox="0 0 24 24">
@@ -2618,13 +2521,13 @@
         </svg>
         Get Quote
       </a>
-      <a href="#reviews" data-nav-close>
+      <a href="#possibilities" data-nav-close>
         <svg viewBox="0 0 24 24" width="18" height="18" stroke="var(--blue-600)" fill="none" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round">
           <polygon
             points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
         </svg>
-        Reviews
+        Designs
       </a>
       <a href="#faq" data-nav-close>
         <svg viewBox="0 0 24 24" width="18" height="18" stroke="var(--blue-600)" fill="none" stroke-width="2"
@@ -2665,7 +2568,7 @@
         <svg viewBox="0 0 24 24" width="18" height="18" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
         Instagram
       </a>
-      <a href="#" onclick="goToEstimator(event)" class="btn btn-primary" data-nav-close>Book Free Survey — 3 Slots Left!</a>
+      <a href="#" onclick="goToEstimator(event)" class="btn btn-primary" data-nav-close>Request a Free Site Survey</a>
     </nav>
   </header>
 
@@ -2682,18 +2585,21 @@
           <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
           <circle cx="12" cy="10" r="3" />
         </svg>
-        Metro Manila & CALABARZON — Greater Manila Area
+        Metro Manila · Cavite · Laguna
       </div>
 
       <h1 class="hero-title fade-up delay-1">
         Premium Stretch Ceilings for
-        <em>BGC, Makati, Alabang & Beyond</em>
+        <em>Modern Philippine Interiors</em>
       </h1>
 
       <p class="hero-sub fade-up delay-2">
-        Serving homeowners and developers across <strong>Metro Manila, Cavite, Laguna, Batangas, Rizal &
-          Quezon.</strong>
-        Dust-free, mold-resistant, and stunning — installed in just 1 day!
+        <strong>European-engineered PVC stretch ceiling systems</strong> for homes, condos and custom interiors.
+        Moisture-resistant, mold-resistant and designed for the Philippine climate.
+      </p>
+
+      <p class="hero-sub fade-up delay-2" style="margin-top:-20px;font-weight:600;color:var(--white);">
+        Matte · Glossy · Printed · Custom Light Ceilings
       </p>
 
       <div class="hero-actions fade-up delay-3">
@@ -2706,7 +2612,7 @@
             <line x1="3" y1="10" x2="21" y2="10" />
             <polyline points="9 16 11 18 15 14" />
           </svg>
-          Book Free Survey — Only 3 Slots Left This Week!
+          Request a Free Site Survey
         </a>
         <a href="https://wa.me/639454103417?text=Hi!%20I'm%20interested%20in%20a%20free%20ceiling%20survey."
           target="_blank" rel="noopener" class="btn btn-ghost-white">
@@ -2714,36 +2620,42 @@
             <path
               d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z" />
           </svg>
-          WhatsApp Us Now
+          WhatsApp Us
         </a>
       </div>
 
+      <p class="fade-up delay-4" style="font-size:0.85rem;color:var(--blue-200);margin-top:-24px;margin-bottom:28px;">
+        Other areas available for selected projects.
+      </p>
+
       <div class="hero-badges fade-up delay-4">
-        <div class="trust-badge">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            <polyline points="9 12 11 14 15 10" />
-          </svg>
-          10-Year Warranty
-        </div>
-        <div class="trust-badge">
-          <svg viewBox="0 0 24 24">
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-          </svg>
-          1-Day Install
-        </div>
         <div class="trust-badge">
           <svg viewBox="0 0 24 24">
             <path
               d="M2 22c1.25-1.25 2.5-2.5 5-2.5s3.75 1.25 5 2.5 2.5 2.5 5 2.5 3.75-1.25 5-2.5M2 17c1.25-1.25 2.5-2.5 5-2.5s3.75 1.25 5 2.5 2.5 2.5 5 2.5 3.75-1.25 5-2.5M2 12c1.25-1.25 2.5-2.5 5-2.5s3.75 1.25 5 2.5 2.5 2.5 5 2.5 3.75-1.25 5-2.5" />
           </svg>
-          Waterproof
+          Moisture-Resistant
         </div>
         <div class="trust-badge">
           <svg viewBox="0 0 24 24">
-            <path d="M12 22c0 0-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z" />
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <polyline points="9 12 11 14 15 10" />
           </svg>
-          Eco-Friendly
+          Mold-Resistant
+        </div>
+        <div class="trust-badge">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5z" />
+            <polyline points="2 17 12 22 22 17" />
+            <polyline points="2 12 12 17 22 12" />
+          </svg>
+          European PVC
+        </div>
+        <div class="trust-badge">
+          <svg viewBox="0 0 24 24">
+            <path d="M9.59 4.59A2 2 0 1111 8H2m10.59 11.41A2 2 0 1014 16H2m15.73-8.27A2.5 2.5 0 1119.5 12H2" />
+          </svg>
+          Clean Installation
         </div>
       </div>
     </div>
@@ -2758,13 +2670,13 @@
       <div class="hero-stat-card">
         <div class="stat-icon">
           <svg viewBox="0 0 24 24">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <polyline points="9 12 11 14 15 10" />
           </svg>
         </div>
         <div>
-          <div class="stat-num">4.9 ★</div>
-          <div class="stat-label">from 120+ satisfied clients</div>
+          <div class="stat-num" style="font-size:1.05rem;">Moisture &amp; Mold-Resistant</div>
+          <div class="stat-label">European PVC membrane</div>
         </div>
       </div>
     </div>
@@ -2845,8 +2757,8 @@
             </svg>
           </div>
           <h3>2. Choose Your Style</h3>
-          <p>Pick from Glossy, Matte, or With design finishes in dozens of colors — perfect for luxury condos, homes,
-            and commercial spaces.</p>
+          <p>Pick from Glossy, Matte, Printed, or Custom Light finishes — suited to premium homes, condos,
+            and modern offices.</p>
         </div>
         <div class="step">
           <div class="step-num-wrap">
@@ -2855,9 +2767,9 @@
               <polyline points="22 4 12 14.01 9 11.01" />
             </svg>
           </div>
-          <h3>3. 1-Day Installation</h3>
-          <p>Our certified team installs your ceiling in a single day — dust-free, no mess, no stress. Your home,
-            transformed overnight.</p>
+          <h3>3. Clean Installation</h3>
+          <p>No sanding or plastering — our team installs cleanly and efficiently. Many standard rooms are completed
+            within one working day.</p>
         </div>
       </div>
     </div>
@@ -2878,7 +2790,7 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue-700)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
           <span style="font-size:0.9rem;color:var(--gray-600);">Starting from</span>
           <strong style="font-family:var(--font-display);font-size:1.5rem;color:var(--blue-800);">₱2,500<span style="font-size:0.85rem;font-weight:500;color:var(--gray-500)">/sqm</span></strong>
-          <span style="font-size:0.8rem;color:var(--gray-500);border-left:1px solid var(--gray-300);padding-left:10px;">incl. installation · no hidden fees</span>
+          <span style="font-size:0.8rem;color:var(--gray-500);border-left:1px solid var(--gray-300);padding-left:10px;">incl. installation · final price confirmed after site survey</span>
         </div>
       </div>
       <div class="features-grid">
@@ -2886,11 +2798,23 @@
         <div class="feature-card">
           <div class="icon-box">
             <svg viewBox="0 0 24 24">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <polyline points="2 17 12 22 22 17" />
+              <polyline points="2 12 12 17 22 12" />
             </svg>
           </div>
-          <h3>1-Day Installation</h3>
-          <p>No extended disruption. Most rooms are done in a single working day with zero heavy lifting by you.</p>
+          <h3>Premium PVC Membrane</h3>
+          <p>Modern seamless finishes for premium interiors.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2s7 7.6 7 12a7 7 0 01-14 0c0-4.4 7-12 7-12z" />
+            </svg>
+          </div>
+          <h3>Designed for Humidity</h3>
+          <p>Hydrophobic, moisture-resistant PVC suitable for tropical conditions.</p>
         </div>
 
         <div class="feature-card">
@@ -2900,31 +2824,8 @@
               <polyline points="9 12 11 14 15 10" />
             </svg>
           </div>
-          <h3>10-Year Warranty</h3>
-          <p>Every ceiling is backed by a full decade of manufacturer and workmanship warranty. Zero worry.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="icon-box">
-            <svg viewBox="0 0 24 24">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-          </div>
-          <h3>Metro-Wide Coverage</h3>
-          <p>We serve all 17 cities of Metro Manila plus Cavite, Laguna, Batangas, Rizal & Quezon. Other regions
-            available on request.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="icon-box">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M2 22c1.25-1.25 2.5-2.5 5-2.5s3.75 1.25 5 2.5 2.5 2.5 5 2.5 3.75-1.25 5-2.5M2 17c1.25-1.25 2.5-2.5 5-2.5s3.75 1.25 5 2.5 2.5 2.5 5 2.5 3.75-1.25 5-2.5M2 12c1.25-1.25 2.5-2.5 5-2.5s3.75 1.25 5 2.5 2.5 2.5 5 2.5 3.75-1.25 5-2.5" />
-            </svg>
-          </div>
-          <h3>Waterproof & Anti-Mold</h3>
-          <p>Engineered for the Philippine tropical climate — stays pristine in high humidity and typhoon season.</p>
+          <h3>Mold-Resistant Surface</h3>
+          <p>PVC does not absorb moisture like traditional gypsum materials.</p>
         </div>
 
         <div class="feature-card">
@@ -2933,20 +2834,8 @@
               <path d="M9.59 4.59A2 2 0 1111 8H2m10.59 11.41A2 2 0 1014 16H2m15.73-8.27A2.5 2.5 0 1119.5 12H2" />
             </svg>
           </div>
-          <h3>100% Dust-Free Process</h3>
-          <p>No sanding, no mess. Our heat-tension method is completely clean — ideal for asthma sufferers and luxury
-            interiors.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="icon-box">
-            <svg viewBox="0 0 24 24">
-              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-              <polyline points="9 22 9 12 15 12 15 22" />
-            </svg>
-          </div>
-          <h3>No Furniture Moving</h3>
-          <p>Leave your belongings exactly where they are. Our trained team works comfortably around them.</p>
+          <h3>Clean Installation</h3>
+          <p>No sanding or plastering, and significantly less construction mess than traditional ceiling work.</p>
         </div>
 
         <div class="feature-card">
@@ -2960,20 +2849,19 @@
                 d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 011.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
             </svg>
           </div>
-          <h3>50+ Design Options</h3>
-          <p>Glossy, Matte, With design, LED panels, starry sky — something for every style, from minimalist to
-            ultra-luxury.</p>
+          <h3>Custom Design</h3>
+          <p>Matte, glossy, printed and lighting-integrated solutions.</p>
         </div>
 
         <div class="feature-card">
           <div class="icon-box">
             <svg viewBox="0 0 24 24">
-              <line x1="12" y1="1" x2="12" y2="23" />
-              <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+              <circle cx="12" cy="12" r="3" />
+              <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" />
             </svg>
           </div>
-          <h3>Transparent Pricing</h3>
-          <p>No hidden fees. Flexible payment terms whether you're in Makati, Alabang, or anywhere in CALABARZON.</p>
+          <h3>European Technical Expertise</h3>
+          <p>Modern stretch-ceiling installation technology and specialist know-how.</p>
         </div>
 
       </div>
@@ -2988,84 +2876,84 @@
     <div class="container">
       <div class="section-header">
         <span class="section-eyebrow">Portfolio</span>
-        <h2>Our Recent Work Across Greater Manila</h2>
-        <p>Real projects by our team — click any photo to view full size. Serving Metro Manila, Cavite, Laguna, Batangas, Rizal and beyond.</p>
+        <h2>Explore Our Stretch Ceiling Finishes</h2>
+        <p>Click any photo to view full size. Serving Metro Manila, Cavite, Laguna, Batangas, Rizal and beyond.</p>
       </div>
       <div class="gallery-grid">
 
         <a href="stretch-ceiling-glossy-white-living-room-alabang.jpg" data-lightbox
-          data-caption="Glossy White — Living Room, Alabang" class="gallery-item">
+          data-caption="Glossy White — Living Room" class="gallery-item">
           <img src="stretch-ceiling-glossy-white-living-room-alabang.jpg"
-            alt="Glossy white stretch ceiling living room Alabang" loading="lazy" />
+            alt="Glossy white stretch ceiling living room" loading="lazy" />
           <div class="gallery-overlay"><div class="gallery-caption">
             <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Glossy White · Living Room · Alabang
+            Glossy White · Living Room
           </div></div>
           <div class="gallery-zoom-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
         </a>
 
         <a href="stretch-ceiling-glossy-dark-grey-hallway-bgc-taguig.jpg" data-lightbox
-          data-caption="Glossy Dark Grey — Hallway with Spotlights, BGC Taguig" class="gallery-item">
+          data-caption="Glossy Dark Grey — Hallway with Spotlights" class="gallery-item">
           <img src="stretch-ceiling-glossy-dark-grey-hallway-bgc-taguig.jpg"
-            alt="Glossy dark grey stretch ceiling hallway BGC Taguig" loading="lazy" />
+            alt="Glossy dark grey stretch ceiling hallway with spotlights" loading="lazy" />
           <div class="gallery-overlay"><div class="gallery-caption">
             <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Glossy Dark Grey · Hallway · BGC
+            Glossy Dark Grey · Hallway
           </div></div>
           <div class="gallery-zoom-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
         </a>
 
         <a href="stretch-ceiling-matte-hallway-spotlights-laguna.jpg" data-lightbox
-          data-caption="Matte White — Hallway with LED Spotlights, Laguna" class="gallery-item">
+          data-caption="Matte White — Hallway with LED Spotlights" class="gallery-item">
           <img src="stretch-ceiling-matte-hallway-spotlights-laguna.jpg"
-            alt="Matte white stretch ceiling hallway spotlights Laguna" loading="lazy" />
+            alt="Matte white stretch ceiling hallway with spotlights" loading="lazy" />
           <div class="gallery-overlay"><div class="gallery-caption">
             <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Matte White · Hallway · Laguna
+            Matte White · Hallway
           </div></div>
           <div class="gallery-zoom-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
         </a>
 
         <a href="stretch-ceiling-glossy-bathroom-led-spotlights-makati.jpg" data-lightbox
-          data-caption="Glossy White — Bathroom with 6 LED Spotlights, Makati" class="gallery-item">
+          data-caption="Glossy White — Bathroom with LED Spotlights" class="gallery-item">
           <img src="stretch-ceiling-glossy-bathroom-led-spotlights-makati.jpg"
-            alt="Glossy stretch ceiling bathroom LED spotlights Makati" loading="lazy" />
+            alt="Glossy stretch ceiling bathroom with LED spotlights" loading="lazy" />
           <div class="gallery-overlay"><div class="gallery-caption">
             <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Glossy White · Bathroom · Makati
+            Glossy White · Bathroom
           </div></div>
           <div class="gallery-zoom-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
         </a>
 
         <a href="stretch-ceiling-matte-white-walk-in-closet-cavite.jpg" data-lightbox
-          data-caption="Matte White — Walk-in Closet with Track Lights, Cavite" class="gallery-item">
+          data-caption="Matte White — Walk-in Closet with Track Lights" class="gallery-item">
           <img src="stretch-ceiling-matte-white-walk-in-closet-cavite.jpg"
-            alt="Matte white stretch ceiling walk-in closet track lights Cavite" loading="lazy" />
+            alt="Matte white stretch ceiling walk-in closet with track lights" loading="lazy" />
           <div class="gallery-overlay"><div class="gallery-caption">
             <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Matte White · Walk-in Closet · Cavite
+            Matte White · Walk-in Closet
           </div></div>
           <div class="gallery-zoom-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
         </a>
 
         <a href="stretch-ceiling-multilevel-dome-entrance-hall-metro-manila.jpg" data-lightbox
-          data-caption="Multi-level Dome — Entrance Hall, Metro Manila" class="gallery-item">
+          data-caption="Multi-level Dome — Entrance Hall" class="gallery-item">
           <img src="stretch-ceiling-multilevel-dome-entrance-hall-metro-manila.jpg"
-            alt="Multi-level dome stretch ceiling entrance hall Metro Manila" loading="lazy" />
+            alt="Multi-level dome stretch ceiling entrance hall" loading="lazy" />
           <div class="gallery-overlay"><div class="gallery-caption">
             <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Multi-level Dome · Entrance · Metro Manila
+            Multi-level Dome · Entrance
           </div></div>
           <div class="gallery-zoom-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
         </a>
 
         <a href="stretch-ceiling-matte-white-staircase-cavite.jpg" data-lightbox
-          data-caption="Matte White — Staircase Area, Cavite" class="gallery-item">
+          data-caption="Matte White — Staircase Area" class="gallery-item">
           <img src="stretch-ceiling-matte-white-staircase-cavite.jpg"
-            alt="Matte white stretch ceiling staircase area Cavite" loading="lazy" />
+            alt="Matte white stretch ceiling staircase area" loading="lazy" />
           <div class="gallery-overlay"><div class="gallery-caption">
             <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Matte White · Staircase · Cavite
+            Matte White · Staircase
           </div></div>
           <div class="gallery-zoom-icon"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
         </a>
@@ -3093,7 +2981,7 @@
       <div class="estimator-header">
         <span class="section-eyebrow" style="color: var(--blue-200);">Instant Estimate</span>
         <h2>Book Your Free Home Survey</h2>
-        <p>Fill in the details below and we'll reach out within 2 hours — anywhere in Metro Manila or CALABARZON.</p>
+        <p>Fill in the details below and our team will contact you as soon as possible during business hours — anywhere in Metro Manila or CALABARZON.</p>
       </div>
 
       <div class="estimator-card" id="estimatorCard">
@@ -3107,7 +2995,7 @@
             </svg>
           </div>
           <h3>We Got Your Request!</h3>
-          <p>Our team will contact you within 2 hours to schedule your free survey. Watch your WhatsApp or Messenger!
+          <p>Our team will contact you as soon as possible during business hours to schedule your free survey. Watch your WhatsApp or Messenger!
           </p>
           <button class="success-reset" onclick="resetEstimator()">Submit another inquiry</button>
         </div>
@@ -3190,8 +3078,8 @@
             <!-- Price breakdown -->
             <div class="price-breakdown">
               <div class="breakdown-row">
-                <span>Ceiling (<span id="bdSqm">20</span> m² × ₱3,200)</span>
-                <span id="bdCeiling">₱64,000</span>
+                <span>Ceiling (<span id="bdSqm">20</span> m² × ₱<span id="bdRate">2,500</span>)</span>
+                <span id="bdCeiling">₱50,000</span>
               </div>
               <div class="breakdown-row" id="bdSpotRow">
                 <span>Spotlights (<span id="bdSpotCount">0</span> pcs<span id="bdFreeTag"></span>)</span>
@@ -3215,19 +3103,22 @@
             <h3 style="margin-bottom:20px;">Step 3: Where should we reach you?</h3>
             <div class="form-field">
               <label class="form-label" for="f-name">Full Name *</label>
-              <input class="form-input" id="f-name" type="text" placeholder="e.g. Maria Santos" />
+              <input class="form-input" id="f-name" type="text" name="name" autocomplete="name"
+                placeholder="e.g. Maria Santos" />
             </div>
             <div class="form-field">
               <label class="form-label" for="f-phone">Mobile / WhatsApp Number *</label>
-              <input class="form-input" id="f-phone" type="tel" placeholder="0945-410-3417" />
+              <input class="form-input" id="f-phone" type="tel" name="phone" autocomplete="tel"
+                inputmode="tel" placeholder="0945-410-3417" />
             </div>
             <div class="form-field">
               <label class="form-label" for="f-email">Email Address *</label>
-              <input class="form-input" id="f-email" type="email" placeholder="e.g. maria@gmail.com" />
+              <input class="form-input" id="f-email" type="email" name="email" autocomplete="email"
+                inputmode="email" placeholder="e.g. maria@gmail.com" />
             </div>
             <div class="form-field">
               <label class="form-label" for="f-area">Your City / Area</label>
-              <input class="form-input" id="f-area" type="text"
+              <input class="form-input" id="f-area" type="text" name="area" autocomplete="address-level2"
                 placeholder="e.g. Makati, BGC, Alabang, Cavite, Laguna…" />
             </div>
             <div class="form-field">
@@ -3263,6 +3154,10 @@
               </svg>
               Your details are private and never shared.
             </div>
+            <p style="font-size:0.72rem;color:var(--gray-400);margin-top:8px;line-height:1.5;">
+              By submitting this form, you agree that we may contact you regarding your ceiling project.
+              See our <a href="privacy-policy.html" target="_blank" rel="noopener" style="color:var(--blue-600);text-decoration:underline;">Privacy Policy</a>.
+            </p>
           </div>
         </div><!-- end formWrap -->
       </div><!-- end estimator-card -->
@@ -3273,135 +3168,76 @@
   <!-- ═══════════════════════════════════════════
      TESTIMONIALS
 ════════════════════════════════════════════════ -->
-  <section class="section" id="reviews">
+  <section class="section" id="possibilities">
     <div class="container">
       <div class="section-header">
-        <span class="section-eyebrow">Client Reviews</span>
-        <h2>What Our Clients Say</h2>
-        <p>From BGC condos to Laguna townhouses — here's what homeowners across Greater Manila are saying.</p>
+        <span class="section-eyebrow">Design Options</span>
+        <h2>Explore Stretch Ceiling Possibilities</h2>
+        <p>From clean matte finishes to fully custom lighting — see the range of what's possible.</p>
       </div>
 
-      <div class="reviews-grid">
+      <div class="features-grid">
 
-        <div class="review-card featured">
-          <div class="stars">
+        <div class="feature-card">
+          <div class="icon-box">
             <svg viewBox="0 0 24 24">
-              <polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              <circle cx="13.5" cy="6.5" r=".5" />
+              <circle cx="17.5" cy="10.5" r=".5" />
+              <circle cx="8.5" cy="7.5" r=".5" />
+              <circle cx="6.5" cy="12.5" r=".5" />
+              <path
+                d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 011.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
             </svg>
           </div>
-          <p class="review-text">"We have a condo in BGC and wanted something premium for the living room. The glossy
-            finish is absolutely stunning — it makes the whole space look twice as large. The team was professional, on
-            time, and done in just 6 hours. Worth every peso!"</p>
-          <div class="reviewer">
-            <img src="https://i.pravatar.cc/84?img=47" alt="Andrea L." loading="lazy" />
-            <div>
-              <div class="reviewer-name">Andrea L.</div>
-              <div class="reviewer-loc">BGC, Taguig</div>
-            </div>
-          </div>
+          <h3>Matte</h3>
+          <p>Soft, non-reflective finish for a calm, modern look.</p>
         </div>
 
-        <div class="review-card">
-          <div class="stars">
+        <div class="feature-card">
+          <div class="icon-box">
             <svg viewBox="0 0 24 24">
-              <polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <polyline points="2 17 12 22 22 17" />
+              <polyline points="2 12 12 17 22 12" />
             </svg>
           </div>
-          <p class="review-text">"I was worried they wouldn't come all the way to Laguna but they were happy to! Free
-            survey, great pricing, and the matte ceiling in our master bedroom is gorgeous. Highly recommend."</p>
-          <div class="reviewer">
-            <img src="https://i.pravatar.cc/84?img=12" alt="Ramon T." loading="lazy" />
-            <div>
-              <div class="reviewer-name">Ramon T.</div>
-              <div class="reviewer-loc">Biñan, Laguna</div>
-            </div>
-          </div>
+          <h3>Glossy</h3>
+          <p>Reflective finish that adds depth and brightness to a room.</p>
         </div>
 
-        <div class="review-card">
-          <div class="stars">
+        <div class="feature-card">
+          <div class="icon-box">
             <svg viewBox="0 0 24 24">
-              <polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
-            <svg viewBox="0 0 24 24">
-              <polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <path d="M21 15l-5-5L5 21" />
             </svg>
           </div>
-          <p class="review-text">"I renovated three rooms in my Alabang house and used them for all three. The
-            spotlights promo was a great deal — I added 8 and only paid for 6. The living room with the With design
-            finish and recessed spotlights looks like a hotel lobby."</p>
-          <div class="reviewer">
-            <img src="https://i.pravatar.cc/84?img=32" alt="Christine M." loading="lazy" />
-            <div>
-              <div class="reviewer-name">Christine M.</div>
-              <div class="reviewer-loc">Alabang, Muntinlupa</div>
-            </div>
+          <h3>Printed / Custom Design</h3>
+          <p>Photo-printed or pattern designs for a personalized ceiling.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24">
+              <path d="M9 18h6M10 22h4M12 2a7 7 0 00-4 12.7c.5.4.8 1 .8 1.7v.6h6.4v-.6c0-.7.3-1.3.8-1.7A7 7 0 0012 2z" />
+            </svg>
           </div>
+          <h3>Backlit / Light Ceilings</h3>
+          <p>Integrated LED lighting for a soft, even glow.</p>
         </div>
 
-      </div>
+        <div class="feature-card">
+          <div class="icon-box">
+            <svg viewBox="0 0 24 24">
+              <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+          </div>
+          <h3>Curved &amp; Custom Light Boxes</h3>
+          <p>Multi-level and curved designs with integrated lighting.</p>
+        </div>
 
-      <div class="stats-row">
-        <div class="stat-item">
-          <div class="stat-big">120+</div>
-          <div class="stat-sub">Completed Projects</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-big">4.9★</div>
-          <div class="stat-sub">Average Rating</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-big">10yr</div>
-          <div class="stat-sub">Warranty Guaranteed</div>
-        </div>
       </div>
     </div>
   </section>
@@ -3484,7 +3320,7 @@
             How much does a stretch ceiling cost in Metro Manila?
             <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
-          <div class="faq-body">Our base rate starts at <strong>₱2,500 per sqm</strong>, all-in with installation. A typical 20 sqm living room comes to around ₱50,000. The final price is confirmed after a free on-site measurement — we never charge more than the quoted price.</div>
+          <div class="faq-body">Our starting rate is <strong>₱2,500 per sqm</strong>, including installation. The final price depends on ceiling area, room geometry, finish, ceiling height, lighting and other project details. We provide an accurate quotation after reviewing your project and completing a site measurement where required.</div>
         </div>
 
         <div class="faq-item">
@@ -3492,7 +3328,7 @@
             How long does installation take?
             <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
-          <div class="faq-body">Most rooms are done in <strong>4–8 hours</strong> — a single working day. The installation is completely dust-free, so you don't need to move furniture or cover your belongings. We clean up everything before we leave.</div>
+          <div class="faq-body">Many standard rooms can be completed within one working day. Larger, curved, multi-level or lighting-intensive projects may take longer. Our installation uses a clean process with no sanding or plastering, creating significantly less mess than traditional ceiling work.</div>
         </div>
 
         <div class="faq-item">
@@ -3500,7 +3336,7 @@
             Can you install in a condo with building admin restrictions?
             <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
-          <div class="faq-body">Yes! We've completed projects in BGC, Makati, and Alabang condos. Please note that our installation <strong>does require drilling into walls</strong> to fix the perimeter profile — but we do <strong>not</strong> drill into the ceiling slab itself. This is standard practice and is generally accepted by building admins. We can provide a technical spec sheet if your building admin requires one.</div>
+          <div class="faq-body">Stretch ceilings can be installed in many condo projects. Installation normally requires fixing a perimeter profile to the walls — it does <strong>not</strong> require drilling into the ceiling slab itself. Building administration rules vary, so project requirements should be checked with your building admin before installation.</div>
         </div>
 
         <div class="faq-item">
@@ -3508,7 +3344,7 @@
             What happens if my ceiling leaks or gets damaged after installation?
             <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
-          <div class="faq-body">Stretch ceilings are waterproof and can hold up to <strong>100 liters of water per sqm</strong> before it needs to be drained — protecting your floor and furniture. If there's a leak from above, we drain the water, dry the membrane, and re-stretch it — often at no charge within the warranty period. Our <strong>10-year warranty</strong> covers material defects.</div>
+          <div class="faq-body">PVC stretch ceiling membrane is moisture-resistant. If water accumulates above the ceiling because of a leak, contact our team for inspection, draining and re-tensioning where appropriate.</div>
         </div>
 
         <div class="faq-item">
@@ -3524,7 +3360,7 @@
             What ceiling finishes and colors are available?
             <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
-          <div class="faq-body">We offer <strong>Glossy, Matte, and Satin finishes</strong> in 50+ colors, plus special options like printed photo ceilings, starry sky (fiber optic), and integrated LED backlighting. Our team brings sample swatches to your free survey so you can see them in your actual space and lighting.</div>
+          <div class="faq-body">We offer <strong>Glossy, Matte, and Printed / Custom Design finishes</strong>, plus Backlit / Light Ceilings and Curved / Custom Light Box designs. Our team can share sample swatches and discuss available colors during your free site survey.</div>
         </div>
 
         <div class="faq-item">
@@ -3532,7 +3368,7 @@
             Can I add spotlights or other lighting to my stretch ceiling?
             <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
-          <div class="faq-body">Absolutely. We install recessed spotlights, LED strips, and pendant light cutouts. As a special offer, <strong>your first 2 spotlights are FREE</strong> — additional spotlights are ₱500 each. You can adjust the count in our instant estimator above.</div>
+          <div class="faq-body">Absolutely. We install recessed spotlights, LED strips, and pendant light cutouts. As part of our current promotion, <strong>your first 2 spotlights are free</strong> — additional spotlights are ₱500 each. You can adjust the count in our instant estimator above.</div>
         </div>
 
         <div class="faq-item">
@@ -3540,7 +3376,7 @@
             Is a deposit required to book?
             <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
           </button>
-          <div class="faq-body">The <strong>home survey is 100% free</strong> with no obligation. Once you decide to proceed, we typically require a 50% deposit to confirm your schedule slot and order your materials. Flexible payment arrangements are available for larger projects.</div>
+          <div class="faq-body">The <strong>home survey is free</strong> with no obligation. Deposit and payment schedule are specified in the written quotation before the project begins.</div>
         </div>
 
       </div>
@@ -3679,16 +3515,16 @@
         <!-- Map -->
         <div>
           <p class="footer-heading">Find Us</p>
-            <a href="https://maps.app.goo.gl/Ktpwi4tdob43sEkt5" target="_blank" rel="noopener" style="display:block;border-radius:12px;overflow:hidden;text-decoration:none;">
+            <a href="https://maps.app.goo.gl/x65NmfFqk99hrfxq5" target="_blank" rel="noopener" style="display:block;border-radius:12px;overflow:hidden;text-decoration:none;">
             <iframe
-              src="https://maps.google.com/maps?q=14.4049424,120.9402285&output=embed&z=17"
+              src="https://maps.google.com/maps?q=14.4051447,120.9402314&output=embed&z=17"
               width="100%" height="180"
               style="border:0;border-radius:12px;display:block;pointer-events:auto;"
               allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
               title="DREAMABOVE location on Google Maps">
             </iframe>
           </a>
-          <a href="https://maps.app.goo.gl/Ktpwi4tdob43sEkt5" target="_blank" rel="noopener"
+          <a href="https://maps.app.goo.gl/x65NmfFqk99hrfxq5" target="_blank" rel="noopener"
             style="display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:0.8rem;font-weight:600;color:var(--blue-400);">
             <svg viewBox="0 0 24 24" width="14" height="14" stroke="var(--blue-400)" fill="none" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Open in Google Maps
@@ -3699,6 +3535,7 @@
       <div class="footer-bottom">
         <span>© 2026 DREAMABOVE. All rights reserved.</span>
         <span>Proudly serving Metro Manila & CALABARZON.</span>
+        <span><a href="privacy-policy.html" style="color:var(--blue-400);text-decoration:underline;">Privacy Policy</a></span>
       </div>
     </div>
   </footer>
@@ -3915,6 +3752,7 @@
 
       /* Update breakdown */
       document.getElementById('bdSqm').textContent = sqm;
+      document.getElementById('bdRate').textContent = phpFmt.format(PRICE.BASE_RATE);
       document.getElementById('bdCeiling').textContent = fmt(ceilingCost);
       document.getElementById('bdSpotCount').textContent = spots;
 
@@ -4027,6 +3865,31 @@
     });
 
     /* ═══════════════════════════════════════════════
+       CONTACT CLICK EVENTS (GA4)
+       Only fires on a real user click on an <a> element.
+       Does NOT fire for the automatic window.open(waURL)
+       triggered after form submission in submitForm() —
+       that call never dispatches a click on these anchors.
+    ════════════════════════════════════════════════ */
+    document.addEventListener('DOMContentLoaded', function () {
+      function trackClicks(selector, eventName, extraParams) {
+        document.querySelectorAll(selector).forEach(function (a) {
+          a.addEventListener('click', function () {
+            if (typeof gtag === 'function') {
+              gtag('event', eventName, extraParams || {});
+            }
+          });
+        });
+      }
+
+      trackClicks('a[href^="tel:"]', 'contact_phone_click', { method: 'phone' });
+      trackClicks('a[href^="https://wa.me"]', 'contact_whatsapp_click', { method: 'whatsapp' });
+      trackClicks('a[href^="mailto:"]', 'contact_email_click', { method: 'email' });
+      trackClicks('a[href*="m.me/"]', 'contact_messenger_click', { method: 'messenger' });
+      trackClicks('a[href^="viber:"]', 'contact_viber_click', { method: 'viber' });
+    });
+
+    /* ═══════════════════════════════════════════════
        FORM SUBMISSION — Formspree live endpoint
        Receives at: inq@ceilings.ph
     ════════════════════════════════════════════════ */
@@ -4113,17 +3976,24 @@
           window.open(waURL, '_blank');
           showSuccess();
         } else {
+          /* Formspree did NOT confirm success — keep the form on the error
+             state (do not show the success screen). Open WhatsApp as a
+             backup so the lead isn't lost, and re-enable the submit button
+             so the visitor can try again if they want to. */
           var data = await res.json();
           var msg = (data.errors && data.errors.length)
             ? data.errors.map(function (e) { return e.message; }).join(', ')
             : 'Submission failed.';
-          showError(msg + ' — opening WhatsApp as backup…');
-          setTimeout(function () { window.open(waURL, '_blank'); showSuccess(); }, 1500);
+          showError(msg + ' — opening WhatsApp as backup so we still receive your inquiry.');
+          window.open(waURL, '_blank');
+          resetSubmitBtn();
         }
       } catch (e) {
-        /* Network blocked (e.g. preview iframe) — fall back silently to WhatsApp */
+        /* Network/request blocked (e.g. offline, ad-blocker, preview iframe).
+           Formspree was never confirmed — do not show the success screen. */
+        showError('We could not reach our server — opening WhatsApp as backup so we still receive your inquiry.');
         window.open(waURL, '_blank');
-        showSuccess();
+        resetSubmitBtn();
       }
     }
 
@@ -4139,9 +4009,24 @@
       btn.innerHTML = '<svg viewBox="0 0 24 24" width="17" height="17" stroke="white" fill="none" stroke-width="2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Book Free Survey 🎉';
     }
 
-    function showSuccess() {
+    /* trackConversion defaults to true (real Formspree success path).
+       Fallback paths that show the success screen even though Formspree
+       did NOT confirm success pass trackConversion=false so generate_lead
+       only ever fires on a genuine successful submission. */
+    function showSuccess(trackConversion) {
       document.getElementById('formWrap').classList.add('hidden');
       document.getElementById('successState').style.display = 'block';
+
+      if (trackConversion !== false && !window.__dreamaboveLeadTracked && typeof gtag === 'function') {
+        window.__dreamaboveLeadTracked = true;
+
+        gtag('event', 'generate_lead', {
+          method: 'estimator_form',
+          lead_source: 'website_estimator',
+          currency: 'PHP',
+          value: 0
+        });
+      }
     }
 
     function resetEstimator() {
