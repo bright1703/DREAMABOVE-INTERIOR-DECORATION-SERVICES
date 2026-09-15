@@ -4025,6 +4025,15 @@
           currency: 'PHP',
           value: 0
         });
+
+        /* Direct Google Ads conversion. This uses a fresh Ads action because
+           the former GA4-imported generate_lead action was deleted and Google
+           Ads does not allow that imported action to be recreated. */
+        gtag('event', 'conversion', {
+          send_to: 'AW-962358025/ImhzCMzjvPgcEInW8coD',
+          value: 1.0,
+          currency: 'PHP'
+        });
       }
     }
 
